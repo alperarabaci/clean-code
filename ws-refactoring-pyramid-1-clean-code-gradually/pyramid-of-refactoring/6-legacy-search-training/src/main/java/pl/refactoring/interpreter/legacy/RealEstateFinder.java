@@ -54,10 +54,14 @@ public class RealEstateFinder {
         List<RealEstate> foundRealEstates = new ArrayList<>();
 
         for (RealEstate estate : repository) {
-            if (andSpec.getSpecMaterial().isSatisfiedBy(estate)  && andSpec.getSpecArea().isSatisfiedBy(estate))
+            if (isSatisfiedBy(andSpec, estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
+    }
+
+    private boolean isSatisfiedBy(AndSpec andSpec, RealEstate estate) {
+        return andSpec.getSpecMaterial().isSatisfiedBy(estate)  && andSpec.getSpecArea().isSatisfiedBy(estate);
     }
 
     public List<RealEstate> byPlacement(EstatePlacement placement){
