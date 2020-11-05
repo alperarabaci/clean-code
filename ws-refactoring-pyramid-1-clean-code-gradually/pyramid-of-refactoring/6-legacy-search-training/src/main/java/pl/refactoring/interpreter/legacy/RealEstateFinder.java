@@ -50,11 +50,7 @@ public class RealEstateFinder {
         Spec specArea = new BelowAreaSpec(maxBuildingArea);
         Spec specMaterial = new MaterialSpec(material);
 
-        Spec andSpec = new AndSpec(specArea, specMaterial);
-
-        return repository.stream()
-                .filter(andSpec::isSatisfiedBy)
-                .collect(Collectors.toList());
+        return bySpec(new AndSpec(specArea, specMaterial));
     }
 
     public List<RealEstate> byPlacement(EstatePlacement placement){
