@@ -50,7 +50,7 @@ public class RealEstateFinder {
         Spec specArea = new BelowAreaSpec(maxBuildingArea);
         Spec specMaterial = new MaterialSpec(material);
 
-        AndSpec andSpec = new AndSpec(specArea, specMaterial);
+        Spec andSpec = new AndSpec(specArea, specMaterial);
 
         return repository.stream()
                 .filter(andSpec::isSatisfiedBy)
