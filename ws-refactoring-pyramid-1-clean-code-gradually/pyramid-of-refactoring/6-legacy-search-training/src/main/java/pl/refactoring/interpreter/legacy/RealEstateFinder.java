@@ -43,8 +43,7 @@ public class RealEstateFinder {
     }
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
-        Spec materialSpec = new MaterialSpec(material);
-        return bySpec(materialSpec);
+        return bySpec(new MaterialSpec(material));
     }
 
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
