@@ -1,5 +1,7 @@
 package pl.refactoring.interpreter.legacy;
 
+import pl.refactoring.interpreter.legacy.specs.BelowAreaSpec;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
