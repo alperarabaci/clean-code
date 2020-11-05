@@ -51,13 +51,10 @@ public class RealEstateFinder {
         Spec specMaterial = new MaterialSpec(material);
 
         AndSpec andSpec = new AndSpec(specArea, specMaterial);
-        List<RealEstate> foundRealEstates = new ArrayList<>();
 
-        for (RealEstate estate : repository) {
-            if (andSpec.isSatisfiedBy(estate))
-                foundRealEstates.add(estate);
-        }
-        return foundRealEstates;
+        return repository.stream()
+                .filter(andSpec::isSatisfiedBy)
+                .collect(Collectors.toList());
     }
 
     public List<RealEstate> byPlacement(EstatePlacement placement){
