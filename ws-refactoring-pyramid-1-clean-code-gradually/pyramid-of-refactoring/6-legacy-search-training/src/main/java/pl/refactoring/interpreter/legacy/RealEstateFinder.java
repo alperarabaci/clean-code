@@ -44,8 +44,7 @@ public class RealEstateFinder {
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
         Spec materialSpec = new MaterialSpec(material);
-        List<RealEstate> foundRealEstates = repository.stream().filter(materialSpec::isSatisfiedBy).collect(Collectors.toList());
-        return foundRealEstates;
+        return repository.stream().filter(materialSpec::isSatisfiedBy).collect(Collectors.toList());
     }
 
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
