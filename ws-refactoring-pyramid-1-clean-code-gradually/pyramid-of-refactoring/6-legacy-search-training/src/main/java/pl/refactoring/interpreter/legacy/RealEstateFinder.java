@@ -50,6 +50,10 @@ public class RealEstateFinder {
         Spec specArea = new BelowAreaSpec(maxBuildingArea);
         Spec specMaterial = new MaterialSpec(material);
 
+        return getRealEstatesTEMP(specArea, specMaterial);
+    }
+
+    private List<RealEstate> getRealEstatesTEMP(Spec specArea, Spec specMaterial) {
         List<RealEstate> foundRealEstates = new ArrayList<>();
 
         for (RealEstate estate : repository) {
