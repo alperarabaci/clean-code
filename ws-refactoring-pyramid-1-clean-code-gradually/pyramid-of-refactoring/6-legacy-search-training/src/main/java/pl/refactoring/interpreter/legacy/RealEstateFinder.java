@@ -44,11 +44,7 @@ public class RealEstateFinder {
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
         Spec materialSpec = new MaterialSpec(material);
-        List<RealEstate> foundRealEstates = new ArrayList<>();
-        for (RealEstate estate : repository) {
-            if (materialSpec.isSatisfiedBy(estate))
-                foundRealEstates.add(estate);
-        }
+        List<RealEstate> foundRealEstates = repository.stream().filter(materialSpec::isSatisfiedBy).collect(Collectors.toList());
         return foundRealEstates;
     }
 
@@ -58,7 +54,7 @@ public class RealEstateFinder {
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (material.isSatisfiedBy(estate) && estate.getBuildingArea() < maxBuildingArea)
+            if (estate.getMaterial().equals(material) && estate.getBuildingArea() < maxBuildingArea)
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
@@ -118,7 +114,7 @@ public class RealEstateFinder {
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (estate.getType().equals(type) && estate.getPlacement().equals(placement) && material.isSatisfiedBy(estate))
+            if (estate.getType().equals(type) && estate.getPlacement().equals(placement) && estate.getMaterial().equals(material))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;

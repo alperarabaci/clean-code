@@ -20,6 +20,6 @@ public class MaterialSpec implements Spec {
     }
 
     public boolean isSatisfiedBy(RealEstate estate) {
-        return estate.getMaterial().equals(this);
+        return estate.getMaterial().equals(this.material);
     }
 }
