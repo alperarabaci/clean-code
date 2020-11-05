@@ -21,16 +21,15 @@ public class RealEstateFinder {
         return bySpec(belowAreaSpec);
     }
 
-	private List<RealEstate> bySpec(Spec belowAreaSpec) {
-		List<RealEstate> foundRealEstates = new ArrayList<>();
-        Iterator<RealEstate> estates = repository.iterator();
-        while (estates.hasNext()) {
-            RealEstate estate = estates.next();
+    
+    private List<RealEstate> bySpec(Spec belowAreaSpec) {
+        List<RealEstate> foundRealEstates = new ArrayList<>();
+        for (RealEstate estate : repository) {
             if (belowAreaSpec.isSatisfiedBy(estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
-	}
+    }
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
         List<RealEstate> foundRealEstates = new ArrayList<>();
