@@ -1,5 +1,6 @@
 package pl.refactoring.interpreter.legacy;
 
+import pl.refactoring.interpreter.legacy.specs.AndSpec;
 import pl.refactoring.interpreter.legacy.specs.BelowAreaSpec;
 import pl.refactoring.interpreter.legacy.specs.MaterialSpec;
 
@@ -47,6 +48,7 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
+        //I don't prefer using inline variable at this method:
         Spec specArea = new BelowAreaSpec(maxBuildingArea);
         Spec specMaterial = new MaterialSpec(material);
 
