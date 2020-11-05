@@ -16,4 +16,8 @@ public class AndSpec {
     public Spec getSpecMaterial() {
         return specMaterial;
     }
+
+    boolean isSatisfiedBy(RealEstate estate) {
+        return getSpecMaterial().isSatisfiedBy(estate)  && getSpecArea().isSatisfiedBy(estate);
+    }
 }
