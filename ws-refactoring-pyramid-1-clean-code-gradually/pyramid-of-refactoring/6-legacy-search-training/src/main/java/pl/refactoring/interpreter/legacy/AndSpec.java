@@ -9,15 +9,7 @@ public class AndSpec {
         this.secondSpec = secondSpec;
     }
 
-    public Spec getFirstSpec() {
-        return firstSpec;
-    }
-
-    public Spec getSecondSpec() {
-        return secondSpec;
-    }
-
     boolean isSatisfiedBy(RealEstate estate) {
-        return getSecondSpec().isSatisfiedBy(estate)  && getFirstSpec().isSatisfiedBy(estate);
+        return secondSpec.isSatisfiedBy(estate)  && firstSpec.isSatisfiedBy(estate);
     }
 }
