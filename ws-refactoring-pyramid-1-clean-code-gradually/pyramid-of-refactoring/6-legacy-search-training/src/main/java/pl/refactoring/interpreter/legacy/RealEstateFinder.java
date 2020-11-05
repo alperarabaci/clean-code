@@ -16,7 +16,7 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byBelowArea(float maxBuildingArea){
-    	BelowAreaSpec belowAreaSpec = new BelowAreaSpec(maxBuildingArea); 
+    	Spec belowAreaSpec = new BelowAreaSpec(maxBuildingArea); 
     	
         List<RealEstate> foundRealEstates = new ArrayList<>();
         Iterator<RealEstate> estates = repository.iterator();
