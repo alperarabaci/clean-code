@@ -16,25 +16,17 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byBelowArea(float maxBuildingArea){
+    	BelowAreaSpec belowAreaSpec = new BelowAreaSpec(maxBuildingArea); 
+    	
         List<RealEstate> foundRealEstates = new ArrayList<>();
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (check(maxBuildingArea, estate))
+            if (estate.getBuildingArea() < belowAreaSpec.getMaxBuildingArea())
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
     }
-
-    /**
-     * 
-     * @param maxBuildingArea always same param, put this param to a class
-     * @param estate
-     * @return
-     */
-	private boolean check(float maxBuildingArea, RealEstate estate) {
-		return estate.getBuildingArea() < maxBuildingArea;
-	}
 
     public List<RealEstate> byMaterial(EstateMaterial material){
         List<RealEstate> foundRealEstates = new ArrayList<>();
@@ -54,7 +46,7 @@ public class RealEstateFinder {
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (estate.getMaterial().equals(material) && check(maxBuildingArea, estate))
+            if (estate.getMaterial().equals(material) && estate.getBuildingArea() < maxBuildingArea)
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
