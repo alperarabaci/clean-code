@@ -13,11 +13,13 @@ public class BelowAreaSpec {
 	}
 
 	/**
-	 * In eclipse to move method use: ⌥ ⌘ V (alt + cmd + V)
+	 * In eclipse to "move refactor" use: ⌥ ⌘ V (alt + cmd + V)
+	 * For full list check: https://www.shortcutfoo.com/app/dojos/eclipse-mac/cheatsheet
+	 * Also cmd + shift + l open shortcut list.
 	 * @param estate
 	 * @return
 	 */
-	boolean check(RealEstate estate) {
+	boolean isSatisfiedBy(RealEstate estate) {
 		return estate.getBuildingArea() < getMaxBuildingArea();
 	}
 

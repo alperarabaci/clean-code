@@ -22,7 +22,7 @@ public class RealEstateFinder {
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (belowAreaSpec.check(estate))
+            if (belowAreaSpec.isSatisfiedBy(estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
