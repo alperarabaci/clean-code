@@ -3,6 +3,7 @@ package pl.refactoring.interpreter.legacy;
 import pl.refactoring.interpreter.legacy.specs.AndSpec;
 import pl.refactoring.interpreter.legacy.specs.BelowAreaSpec;
 import pl.refactoring.interpreter.legacy.specs.MaterialSpec;
+import pl.refactoring.interpreter.legacy.specs.PlacementSpec;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,14 +21,6 @@ public class RealEstateFinder {
         this.repository = repository;
     }
 
-    public List<RealEstate> byBelowArea(float maxBuildingArea){
-        /**
-         * spec variable removed, used inline variable
-         * alt cmd I: inline selected method or variable (IntelliJ IDEA, i will check it in Eclipse too)
-         */
-        return bySpec(new BelowAreaSpec(maxBuildingArea));
-    }
-
     /**
      * Replace while method with collect.
      * @param belowAreaSpec
@@ -35,12 +28,20 @@ public class RealEstateFinder {
      */
     private List<RealEstate> bySpec(Spec belowAreaSpec) {
         /**
-         * foundRealEstates removed.
+         * foundRealEstates variable removed.
          * alt cmd I: inline selected method or variable (IntelliJ IDEA, i will check it in Eclipse too)
          */
         return repository.stream()
                 .filter(belowAreaSpec::isSatisfiedBy)
                 .collect(Collectors.toList());
+    }
+
+    public List<RealEstate> byBelowArea(float maxBuildingArea){
+        /**
+         * spec variable removed, used inline variable
+         * alt cmd I: inline selected method or variable (IntelliJ IDEA, i will check it in Eclipse too)
+         */
+        return bySpec(new BelowAreaSpec(maxBuildingArea));
     }
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
@@ -56,15 +57,7 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byPlacement(EstatePlacement placement){
-        List<RealEstate> foundRealEstates = new ArrayList<>();
-
-        Iterator<RealEstate> estates = repository.iterator();
-        while (estates.hasNext()) {
-            RealEstate estate = estates.next();
-            if (estate.getPlacement().equals(placement))
-                foundRealEstates.add(estate);
-        }
-        return foundRealEstates;
+        return bySpec(new PlacementSpec(placement));
     }
 
     public List<RealEstate> byAvoidingPlacement(EstatePlacement placement){
