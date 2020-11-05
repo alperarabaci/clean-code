@@ -22,17 +22,13 @@ public class RealEstateFinder {
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (check(belowAreaSpec, estate))
+            if (belowAreaSpec.check(estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
     }
 
-	private boolean check(BelowAreaSpec belowAreaSpec, RealEstate estate) {
-		return estate.getBuildingArea() < belowAreaSpec.getMaxBuildingArea();
-	}
-
-    public List<RealEstate> byMaterial(EstateMaterial material){
+	public List<RealEstate> byMaterial(EstateMaterial material){
         List<RealEstate> foundRealEstates = new ArrayList<>();
 
         Iterator<RealEstate> estates = repository.iterator();

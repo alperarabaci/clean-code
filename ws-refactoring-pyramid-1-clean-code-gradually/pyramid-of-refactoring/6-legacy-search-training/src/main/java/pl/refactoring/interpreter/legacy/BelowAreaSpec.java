@@ -12,4 +12,13 @@ public class BelowAreaSpec {
 		return maxBuildingArea;
 	}
 
+	/**
+	 * In eclipse to move method use: ⌥ ⌘ V (alt + cmd + V)
+	 * @param estate
+	 * @return
+	 */
+	boolean check(RealEstate estate) {
+		return estate.getBuildingArea() < getMaxBuildingArea();
+	}
+
 }
