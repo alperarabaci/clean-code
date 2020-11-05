@@ -1,23 +1,23 @@
 package pl.refactoring.interpreter.legacy;
 
 public class AndSpec {
-    private final Spec specArea;
-    private final Spec specMaterial;
+    private final Spec firstSpec;
+    private final Spec secondSpec;
 
-    public AndSpec(Spec specArea, Spec specMaterial) {
-        this.specArea = specArea;
-        this.specMaterial = specMaterial;
+    public AndSpec(Spec firstSpec, Spec secondSpec) {
+        this.firstSpec = firstSpec;
+        this.secondSpec = secondSpec;
     }
 
-    public Spec getSpecArea() {
-        return specArea;
+    public Spec getFirstSpec() {
+        return firstSpec;
     }
 
-    public Spec getSpecMaterial() {
-        return specMaterial;
+    public Spec getSecondSpec() {
+        return secondSpec;
     }
 
     boolean isSatisfiedBy(RealEstate estate) {
-        return getSpecMaterial().isSatisfiedBy(estate)  && getSpecArea().isSatisfiedBy(estate);
+        return getSecondSpec().isSatisfiedBy(estate)  && getFirstSpec().isSatisfiedBy(estate);
     }
 }
