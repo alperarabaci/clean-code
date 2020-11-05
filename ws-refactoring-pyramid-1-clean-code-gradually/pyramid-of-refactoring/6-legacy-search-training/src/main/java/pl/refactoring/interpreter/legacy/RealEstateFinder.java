@@ -20,11 +20,21 @@ public class RealEstateFinder {
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (estate.getBuildingArea() < maxBuildingArea)
+            if (check(maxBuildingArea, estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
     }
+
+    /**
+     * 
+     * @param maxBuildingArea always same param, put this param to a class
+     * @param estate
+     * @return
+     */
+	private boolean check(float maxBuildingArea, RealEstate estate) {
+		return estate.getBuildingArea() < maxBuildingArea;
+	}
 
     public List<RealEstate> byMaterial(EstateMaterial material){
         List<RealEstate> foundRealEstates = new ArrayList<>();
@@ -44,7 +54,7 @@ public class RealEstateFinder {
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (estate.getMaterial().equals(material) && estate.getBuildingArea() < maxBuildingArea)
+            if (estate.getMaterial().equals(material) && check(maxBuildingArea, estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
