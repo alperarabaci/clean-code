@@ -47,12 +47,13 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
+        Spec specArea = new BelowAreaSpec(maxBuildingArea);
+        Spec specMaterial = new MaterialSpec(material);
+
         List<RealEstate> foundRealEstates = new ArrayList<>();
 
-        Iterator<RealEstate> estates = repository.iterator();
-        while (estates.hasNext()) {
-            RealEstate estate = estates.next();
-            if (estate.getMaterial().equals(material) && estate.getBuildingArea() < maxBuildingArea)
+        for (RealEstate estate : repository) {
+            if (specMaterial.isSatisfiedBy(estate)  && specArea.isSatisfiedBy(estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
