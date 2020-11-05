@@ -62,15 +62,13 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byAreaRange(float minArea, float maxArea){
-        List<RealEstate> foundRealEstates = new ArrayList<>();
-
-        Iterator<RealEstate> estates = repository.iterator();
-        while (estates.hasNext()) {
-            RealEstate estate = estates.next();
-            if (estate.getBuildingArea() >= minArea && estate.getBuildingArea() <= maxArea)
-                foundRealEstates.add(estate);
-        }
-        return foundRealEstates;
+        /**
+         * Extract to temp method
+         * IntelliJ IDEA refactor menu: fn + kntrl + T (eclipse style)
+         * After generate Introduce Parameter Object "inline parameter": cmd +alt + I (eclipse style)
+         */
+        Spec rangeAreaSpec = new AreaRangeSpec(minArea, maxArea);
+        return bySpec(rangeAreaSpec);
     }
 
     public List<RealEstate> byType(EstateType type){
