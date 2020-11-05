@@ -61,15 +61,7 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byAvoidingPlacement(EstatePlacement placement){
-        List<RealEstate> foundRealEstates = new ArrayList<>();
-
-        Iterator<RealEstate> estates = repository.iterator();
-        while (estates.hasNext()) {
-            RealEstate estate = estates.next();
-            if (! estate.getPlacement().equals(placement))
-                foundRealEstates.add(estate);
-        }
-        return foundRealEstates;
+        return bySpec(new NotSpec(new PlacementSpec(placement)));
     }
 
     public List<RealEstate> byAreaRange(float minArea, float maxArea){
