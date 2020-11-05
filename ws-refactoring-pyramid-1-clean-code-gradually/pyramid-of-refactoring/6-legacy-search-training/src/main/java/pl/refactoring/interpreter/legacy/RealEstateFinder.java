@@ -50,14 +50,14 @@ public class RealEstateFinder {
         Spec specArea = new BelowAreaSpec(maxBuildingArea);
         Spec specMaterial = new MaterialSpec(material);
 
-        return getRealEstatesTEMP(specArea, specMaterial);
+        return getRealEstatesTEMP(new AndSpec(specArea, specMaterial));
     }
 
-    private List<RealEstate> getRealEstatesTEMP(Spec specArea, Spec specMaterial) {
+    private List<RealEstate> getRealEstatesTEMP(AndSpec andSpec) {
         List<RealEstate> foundRealEstates = new ArrayList<>();
 
         for (RealEstate estate : repository) {
-            if (specMaterial.isSatisfiedBy(estate)  && specArea.isSatisfiedBy(estate))
+            if (andSpec.getSpecMaterial().isSatisfiedBy(estate)  && andSpec.getSpecArea().isSatisfiedBy(estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
