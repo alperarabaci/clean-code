@@ -72,16 +72,7 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byType(EstateType type){
-        TypeSpec typeSpec = new TypeSpec(type);
-
-        List<RealEstate> foundRealEstates = new ArrayList<>();
-        Iterator<RealEstate> estates = repository.iterator();
-        while (estates.hasNext()) {
-            RealEstate estate = estates.next();
-            if (typeSpec.isSatisfiedBy(estate))
-                foundRealEstates.add(estate);
-        }
-        return foundRealEstates;
+        return bySpec(new TypeSpec(type));
     }
 
     public List<RealEstate> byVerySpecificCriteria(EstateType type, EstatePlacement placement, EstateMaterial material){

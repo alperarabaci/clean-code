@@ -1,13 +1,13 @@
 package pl.refactoring.interpreter.legacy;
 
-public class TypeSpec {
+public class TypeSpec implements Spec {
     private final EstateType type;
 
     public TypeSpec(EstateType type) {
         this.type = type;
     }
 
-    boolean isSatisfiedBy(RealEstate estate) {
+    public boolean isSatisfiedBy(RealEstate estate) {
         return estate.getType().equals(type);
     }
 }
