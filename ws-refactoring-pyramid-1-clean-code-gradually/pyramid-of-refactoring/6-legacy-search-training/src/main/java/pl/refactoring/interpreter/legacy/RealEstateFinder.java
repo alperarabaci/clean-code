@@ -17,9 +17,11 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byBelowArea(float maxBuildingArea){
-    	Spec belowAreaSpec = new BelowAreaSpec(maxBuildingArea); 
-    	
-        return bySpec(belowAreaSpec);
+        /**
+         * spec variable removed, used inline variable
+         * alt cmd I: inline selected method or variable (IntelliJ IDEA, i will check it in Eclipse too)
+         */
+        return bySpec(new BelowAreaSpec(maxBuildingArea));
     }
 
     /**
@@ -28,7 +30,13 @@ public class RealEstateFinder {
      * @return
      */
     private List<RealEstate> bySpec(Spec belowAreaSpec) {
-        return repository.stream().filter(belowAreaSpec::isSatisfiedBy).collect(Collectors.toList());
+        /**
+         * foundRealEstates removed.
+         * alt cmd I: inline selected method or variable (IntelliJ IDEA, i will check it in Eclipse too)
+         */
+        return repository.stream()
+                .filter(belowAreaSpec::isSatisfiedBy)
+                .collect(Collectors.toList());
     }
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
