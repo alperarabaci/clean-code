@@ -22,10 +22,13 @@ public class RealEstateFinder {
         return bySpec(belowAreaSpec);
     }
 
-    
+    /**
+     * Replace while method with collect.
+     * @param belowAreaSpec
+     * @return
+     */
     private List<RealEstate> bySpec(Spec belowAreaSpec) {
-        List<RealEstate> foundRealEstates = repository.stream().filter(belowAreaSpec::isSatisfiedBy).collect(Collectors.toList());
-        return foundRealEstates;
+        return repository.stream().filter(belowAreaSpec::isSatisfiedBy).collect(Collectors.toList());
     }
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
