@@ -30,9 +30,16 @@ public class HandResolver {
             // Check for straight flush
             if (isSequential(handCards))
                 return new Hand(STRAIGHT_FLUSH, handCards);
-            else
+        }
+
+        if (isAllSameSuit(handCards)) {
+            // Check for straight flush
+            if (!isSequential(handCards))
                 return new Hand(FLUSH, handCards);
-        } else {
+        }
+        // else
+        // TODO Below logic assumed that cards belong to different suites
+        {
             // Check for possible x of a kind
             Map<RANK, List<Card>> cardsByRank = handCards.stream().collect(groupingBy(Card::getRank));
 
