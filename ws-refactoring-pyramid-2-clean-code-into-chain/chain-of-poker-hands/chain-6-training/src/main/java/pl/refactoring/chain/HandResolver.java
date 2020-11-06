@@ -89,8 +89,6 @@ public class HandResolver {
                     return new Hand(TWO_PAIRS, handCards);
             } else if (ranks.size() == 4) {
                 return new Hand(ONE_PAIR, handCards);
-            } else {
-                return new Hand(HIGH_CARD, handCards);
             }
         }
 
