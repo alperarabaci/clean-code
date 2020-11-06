@@ -47,4 +47,19 @@ public class CardSet {
         return handCards.stream()
                 .allMatch(card -> card.getSuit().equals(suitCandidate));
     }
+
+    boolean isSequential() {
+        List<Card> handCards = getSortedCards();
+        // Check for straight
+        int firstOrdinal = handCards.get(0).getRank().ordinal();
+        int secondOrdinal = handCards.get(1).getRank().ordinal();
+        int thirdOrdinal = handCards.get(2).getRank().ordinal();
+        int fourthOrdinal = handCards.get(3).getRank().ordinal();
+        int fifthOrdinal = handCards.get(4).getRank().ordinal();
+
+        return firstOrdinal + 1 == secondOrdinal
+                && secondOrdinal + 1 == thirdOrdinal
+                && thirdOrdinal + 1 == fourthOrdinal
+                && fourthOrdinal + 1 == fifthOrdinal;
+    }
 }
