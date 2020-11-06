@@ -27,10 +27,10 @@ public class HandResolver {
         List<Card> handCards = cardSet.getSortedCards();
 
         // Figure our high card by same color
-        SUIT colorCandidate = handCards.get(0).getSuit();
-        boolean allSameColor = handCards.stream()
-                .allMatch(card -> card.getSuit().equals(colorCandidate));
-        if (allSameColor) {
+        SUIT suitCandidate = handCards.get(0).getSuit();
+        boolean allSameSuit = handCards.stream()
+                .allMatch(card -> card.getSuit().equals(suitCandidate));
+        if (allSameSuit) {
             // Check for straight flush
             int firstOrdinal = handCards.get(0).getRank().ordinal();
             int secondOrdinal = handCards.get(1).getRank().ordinal();
