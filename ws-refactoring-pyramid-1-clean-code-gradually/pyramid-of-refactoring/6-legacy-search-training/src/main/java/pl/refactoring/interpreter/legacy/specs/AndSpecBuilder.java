@@ -13,14 +13,15 @@ public class AndSpecBuilder {
     }
 
     public AndSpecBuilder withSpec(Spec spec1, Spec spec2) {
-        this.specs.add(spec1);
-        this.specs.add(spec2);
+        withSpec(spec1);
+        withSpec(spec2);
         return this;
     }
+
     public AndSpecBuilder withSpec(Spec spec1, Spec spec2, Spec spec3) {
-        this.specs.add(spec1);
-        this.specs.add(spec2);
-        this.specs.add(spec3);
+        withSpec(spec1);
+        withSpec(spec2);
+        withSpec(spec3);
         return this;
     }
 
