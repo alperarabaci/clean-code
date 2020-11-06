@@ -42,20 +42,18 @@ public class CardSet {
     }
 
     boolean isAllSameSuit() {
-        List<Card> handCards = getSortedCards();
-        SUIT suitCandidate = handCards.get(0).getSuit();
-        return handCards.stream()
+        SUIT suitCandidate = sortedCards.get(0).getSuit();
+        return sortedCards.stream()
                 .allMatch(card -> card.getSuit().equals(suitCandidate));
     }
 
     boolean isSequential() {
-        List<Card> handCards = getSortedCards();
         // Check for straight
-        int firstOrdinal = handCards.get(0).getRank().ordinal();
-        int secondOrdinal = handCards.get(1).getRank().ordinal();
-        int thirdOrdinal = handCards.get(2).getRank().ordinal();
-        int fourthOrdinal = handCards.get(3).getRank().ordinal();
-        int fifthOrdinal = handCards.get(4).getRank().ordinal();
+        int firstOrdinal = sortedCards.get(0).getRank().ordinal();
+        int secondOrdinal = sortedCards.get(1).getRank().ordinal();
+        int thirdOrdinal = sortedCards.get(2).getRank().ordinal();
+        int fourthOrdinal = sortedCards.get(3).getRank().ordinal();
+        int fifthOrdinal = sortedCards.get(4).getRank().ordinal();
 
         return firstOrdinal + 1 == secondOrdinal
                 && secondOrdinal + 1 == thirdOrdinal
