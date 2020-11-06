@@ -84,12 +84,7 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byTypePlacementMaterial(EstateType type, EstatePlacement placement, EstateMaterial material){
-        TypeSpec typeSpec = ofType(type);
-        PlacementSpec placementSpec = placedIn(placement);
-        MaterialSpec materialSpec = ofMaterial(material);
-
-        Spec andSpec = new AndSpec(typeSpec, placementSpec, materialSpec);
-
+        Spec andSpec = new AndSpec(ofType(type), placedIn(placement), ofMaterial(material));
         return bySpec(andSpec);
     }
 }
