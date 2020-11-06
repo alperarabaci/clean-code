@@ -81,7 +81,10 @@ public class RealEstateFinder {
         Iterator<RealEstate> estates = repository.iterator();
         while (estates.hasNext()) {
             RealEstate estate = estates.next();
-            if (new TypeSpec(type).isSatisfiedBy(estate) && new PlacementSpec(placement).isSatisfiedBy(estate) && new MaterialSpec(material).isSatisfiedBy(estate))
+            TypeSpec typeSpec = new TypeSpec(type);
+            PlacementSpec placementSpec = new PlacementSpec(placement);
+            MaterialSpec materialSpec = new MaterialSpec(material);
+            if (typeSpec.isSatisfiedBy(estate) && placementSpec.isSatisfiedBy(estate) && materialSpec.isSatisfiedBy(estate))
                 foundRealEstates.add(estate);
         }
         return foundRealEstates;
