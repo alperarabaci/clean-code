@@ -81,9 +81,7 @@ public class RealEstateFinder {
         MaterialSpec materialSpec = new MaterialSpec(material);
 
         List<RealEstate> foundRealEstates = new ArrayList<>();
-        Iterator<RealEstate> estates = repository.iterator();
-        while (estates.hasNext()) {
-            RealEstate estate = estates.next();
+        for (RealEstate estate : repository) {
             if (typeSpec.isSatisfiedBy(estate) && placementSpec.isSatisfiedBy(estate) && materialSpec.isSatisfiedBy(estate))
                 foundRealEstates.add(estate);
         }
