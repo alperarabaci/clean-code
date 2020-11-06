@@ -1,7 +1,7 @@
 Udemy Education:
 [Pyramid of Refactoring (Java-1) - Clean Code Gradually](https://www.udemy.com/course/pyramid-of-refactoring-java-interpreter-factories)
 
-Step by step implementation in project: 6-legacy-search-training
+Step by step implementation of project: 6-legacy-search-training
 
 # Pyramid of Refactoring
 
