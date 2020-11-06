@@ -143,7 +143,7 @@ public class RealEstateFinderTest {
     @Test
     public void findStoneCastlesInTowns() {
         //when
-        List<RealEstate> foundResults = finder.byVerySpecificCriteria(EstateType.CASTLE, EstatePlacement.TOWN, EstateMaterial.STONE);
+        List<RealEstate> foundResults = finder.byTypePlacementMaterial(EstateType.CASTLE, EstatePlacement.TOWN, EstateMaterial.STONE);
 
         //then
         assertEquals(1, foundResults.size(), "found 1 estate");

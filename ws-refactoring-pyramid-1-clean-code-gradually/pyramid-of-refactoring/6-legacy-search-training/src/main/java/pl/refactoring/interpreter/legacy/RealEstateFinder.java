@@ -75,12 +75,13 @@ public class RealEstateFinder {
         return bySpec(new TypeSpec(type));
     }
 
-    public List<RealEstate> byVerySpecificCriteria(EstateType type, EstatePlacement placement, EstateMaterial material){
+    public List<RealEstate> byTypePlacementMaterial(EstateType type, EstatePlacement placement, EstateMaterial material){
         TypeSpec typeSpec = new TypeSpec(type);
         PlacementSpec placementSpec = new PlacementSpec(placement);
         MaterialSpec materialSpec = new MaterialSpec(material);
-        AndSpec andSpec = new AndSpec(typeSpec, placementSpec, materialSpec);
 
-        return repository.stream().filter(andSpec::isSatisfiedBy).collect(Collectors.toList());
+        Spec andSpec = new AndSpec(typeSpec, placementSpec, materialSpec);
+
+        return bySpec(andSpec);
     }
 }
