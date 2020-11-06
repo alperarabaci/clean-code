@@ -40,11 +40,10 @@ public class HandResolver {
                 .stream()
                 .collect(Collectors.toList());
 
-        int rankDiversity = 5;
-        if (cardSet.hasRankDiversity(rankDiversity)) {
-            if (cardSet.isSequential())
-                return new Hand(STRAIGHT, handCards(cardSet));
+        if (cardSet.hasRankDiversity(5) && cardSet.isSequential()) {
+            return new Hand(STRAIGHT, handCards(cardSet));
         }
+
         if (cardSet.hasRankDiversity(2)) {
             // Look for four of a kind
             if (cardsByRank(cardSet).get(ranks.get(0)).size() == 4 ||
