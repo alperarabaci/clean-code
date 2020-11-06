@@ -26,10 +26,8 @@ public class HandResolver {
     public Hand hand(CardSet cardSet) {
         List<Card> handCards = cardSet.getSortedCards();
 
-        // Figure our high card by same color
-        SUIT suitCandidate = handCards.get(0).getSuit();
-        boolean allSameSuit = handCards.stream()
-                .allMatch(card -> card.getSuit().equals(suitCandidate));
+        boolean allSameSuit = isAllSameSuit(handCards);
+
         if (allSameSuit) {
             // Check for straight flush
             int firstOrdinal = handCards.get(0).getRank().ordinal();
@@ -93,5 +91,11 @@ public class HandResolver {
         }
 
         return new Hand(HIGH_CARD, handCards);
+    }
+
+    private boolean isAllSameSuit(List<Card> handCards) {
+        SUIT suitCandidate = handCards.get(0).getSuit();
+        return handCards.stream()
+                .allMatch(card -> card.getSuit().equals(suitCandidate));
     }
 }
