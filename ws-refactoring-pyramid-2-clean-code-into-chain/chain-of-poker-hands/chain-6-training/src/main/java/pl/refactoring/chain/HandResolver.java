@@ -2,7 +2,6 @@ package pl.refactoring.chain;
 
 import pl.refactoring.chain.card.Card;
 import pl.refactoring.chain.card.RANK;
-import pl.refactoring.chain.card.SUIT;
 
 import java.util.List;
 import java.util.Map;
@@ -26,13 +25,13 @@ public class HandResolver {
     public Hand hand(CardSet cardSet) {
         List<Card> handCards = cardSet.getSortedCards();
 
-        if (isAllSameSuit(cardSet)) {
+        if (cardSet.isAllSameSuit()) {
             // Check for straight flush
             if (isSequential(handCards))
                 return new Hand(STRAIGHT_FLUSH, handCards);
         }
 
-        if (isAllSameSuit(cardSet)) {
+        if (cardSet.isAllSameSuit()) {
             // Check for straight flush
             if (!isSequential(handCards))
                 return new Hand(FLUSH, handCards);
@@ -94,10 +93,4 @@ public class HandResolver {
                 && fourthOrdinal + 1 == fifthOrdinal;
     }
 
-    private boolean isAllSameSuit(CardSet cardSet) {
-        List<Card> handCards = cardSet.getSortedCards();
-        SUIT suitCandidate = handCards.get(0).getSuit();
-        return handCards.stream()
-                .allMatch(card -> card.getSuit().equals(suitCandidate));
-    }
 }

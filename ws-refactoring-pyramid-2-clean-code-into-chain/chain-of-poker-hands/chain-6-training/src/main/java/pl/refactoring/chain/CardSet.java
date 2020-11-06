@@ -1,6 +1,7 @@
 package pl.refactoring.chain;
 
 import pl.refactoring.chain.card.Card;
+import pl.refactoring.chain.card.SUIT;
 
 import java.util.List;
 import java.util.SortedSet;
@@ -38,5 +39,12 @@ public class CardSet {
 
     public List<Card> getSortedCards() {
         return sortedCards;
+    }
+
+    boolean isAllSameSuit() {
+        List<Card> handCards = getSortedCards();
+        SUIT suitCandidate = handCards.get(0).getSuit();
+        return handCards.stream()
+                .allMatch(card -> card.getSuit().equals(suitCandidate));
     }
 }
