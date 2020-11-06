@@ -3,6 +3,7 @@ package pl.refactoring.interpreter.legacy;
 import pl.refactoring.interpreter.legacy.specs.*;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static pl.refactoring.interpreter.legacy.specs.Specs.*;
@@ -23,13 +24,13 @@ public class RealEstateFinder {
      * @param belowAreaSpec
      * @return
      */
-    private List<RealEstate> bySpec(Spec belowAreaSpec) {
+    private List<RealEstate> bySpec(Predicate<RealEstate> belowAreaSpec) {
         /**
          * foundRealEstates variable removed.
          * alt cmd I: inline selected method or variable (IntelliJ IDEA, i will check it in Eclipse too)
          */
         return repository.stream()
-                .filter(belowAreaSpec::isSatisfiedBy)
+                .filter(belowAreaSpec::test)
                 .collect(Collectors.toList());
     }
 
