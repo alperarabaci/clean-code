@@ -35,44 +35,47 @@ public class HandResolver {
         // else
         // TODO Below logic assumed that cards belong to different suites
         // Check for possible x of a kind
-        Map<RANK, List<Card>> cardsByRank = handCards(cardSet).stream()
-                .collect(groupingBy(Card::getRank));
 
-        List<RANK> ranks = cardsByRank.keySet()
+        List<RANK> ranks = cardsByRank(cardSet).keySet()
                 .stream()
                 .collect(Collectors.toList());
 
         int rankDiversity = 5;
-        if (hasRankDiversity(cardsByRank, rankDiversity)) {
+        if (hasRankDiversity(cardsByRank(cardSet), rankDiversity)) {
             if (cardSet.isSequential())
                 return new Hand(STRAIGHT, handCards(cardSet));
         }
-        if (hasRankDiversity(cardsByRank, 2)) {
+        if (hasRankDiversity(cardsByRank(cardSet), 2)) {
             // Look for four of a kind
-            if (cardsByRank.get(ranks.get(0)).size() == 4 ||
-                    cardsByRank.get(ranks.get(1)).size() == 4)
+            if (cardsByRank(cardSet).get(ranks.get(0)).size() == 4 ||
+                    cardsByRank(cardSet).get(ranks.get(1)).size() == 4)
                 return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
                 // Look for full house
             else {
                 return new Hand(FULL_HOUSE, handCards(cardSet));
             }
-        } else if (hasRankDiversity(cardsByRank, 3)) {
+        } else if (hasRankDiversity(cardsByRank(cardSet), 3)) {
             // Look for 3 of a kind
-            if (cardsByRank.get(ranks.get(0)).size() == 3 ||
-                    cardsByRank.get(ranks.get(1)).size() == 3 ||
-                    cardsByRank.get(ranks.get(2)).size() == 3)
+            if (cardsByRank(cardSet).get(ranks.get(0)).size() == 3 ||
+                    cardsByRank(cardSet).get(ranks.get(1)).size() == 3 ||
+                    cardsByRank(cardSet).get(ranks.get(2)).size() == 3)
                 return new Hand(THREE_OF_A_KIND, handCards(cardSet));
 
             // Look for 2 pairs
-            if (cardsByRank.get(ranks.get(0)).size() == 1 ||
-                    cardsByRank.get(ranks.get(1)).size() == 1 ||
-                    cardsByRank.get(ranks.get(2)).size() == 1)
+            if (cardsByRank(cardSet).get(ranks.get(0)).size() == 1 ||
+                    cardsByRank(cardSet).get(ranks.get(1)).size() == 1 ||
+                    cardsByRank(cardSet).get(ranks.get(2)).size() == 1)
                 return new Hand(TWO_PAIRS, handCards(cardSet));
-        } else if (hasRankDiversity(cardsByRank, 4)) {
+        } else if (hasRankDiversity(cardsByRank(cardSet), 4)) {
             return new Hand(ONE_PAIR, handCards(cardSet));
         }
 
         return new Hand(HIGH_CARD, handCards(cardSet));
+    }
+
+    private Map<RANK, List<Card>> cardsByRank(CardSet cardSet) {
+        return handCards(cardSet).stream()
+                .collect(groupingBy(Card::getRank));
     }
 
     private boolean hasRankDiversity(Map<RANK, List<Card>> cardsByRank, int rankDiversity) {
