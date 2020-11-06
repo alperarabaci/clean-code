@@ -32,6 +32,11 @@ public class HandResolver {
             return new Hand(FLUSH, handCards(cardSet));
         }
 
+        if (!cardSet.isAllSameSuit()
+                && cardSet.hasRankDiversity(5)
+                && cardSet.isSequential()) {
+            return new Hand(STRAIGHT, handCards(cardSet));
+        }
         // else
         // TODO Below logic assumed that cards belong to different suites
         // Check for possible x of a kind
@@ -40,9 +45,6 @@ public class HandResolver {
                 .stream()
                 .collect(Collectors.toList());
 
-        if (cardSet.hasRankDiversity(5) && cardSet.isSequential()) {
-            return new Hand(STRAIGHT, handCards(cardSet));
-        }
 
         if (cardSet.hasRankDiversity(2)) {
             // Look for four of a kind
