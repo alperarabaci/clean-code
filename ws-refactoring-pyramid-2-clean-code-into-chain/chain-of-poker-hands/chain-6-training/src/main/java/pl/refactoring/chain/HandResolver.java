@@ -23,24 +23,23 @@ import static pl.refactoring.chain.RANKING.*;
  */
 public class HandResolver {
     public Hand hand(CardSet cardSet) {
-        List<Card> handCards = cardSet.getSortedCards();
 
         if (cardSet.isAllSameSuit()) {
             // Check for straight flush
             if (isSequential(cardSet))
-                return new Hand(STRAIGHT_FLUSH, handCards);
+                return new Hand(STRAIGHT_FLUSH, handCards(cardSet));
         }
 
         if (cardSet.isAllSameSuit()) {
             // Check for straight flush
             if (!isSequential(cardSet))
-                return new Hand(FLUSH, handCards);
+                return new Hand(FLUSH, handCards(cardSet));
         }
         // else
         // TODO Below logic assumed that cards belong to different suites
         {
             // Check for possible x of a kind
-            Map<RANK, List<Card>> cardsByRank = handCards.stream().collect(groupingBy(Card::getRank));
+            Map<RANK, List<Card>> cardsByRank = handCards(cardSet).stream().collect(groupingBy(Card::getRank));
 
             List<RANK> ranks = cardsByRank.keySet()
                     .stream()
@@ -48,39 +47,46 @@ public class HandResolver {
             if (ranks.size() == 5) {
                 boolean isSequential = isSequential(cardSet);
                 if (isSequential)
-                    return new Hand(STRAIGHT, handCards);
+                    return new Hand(STRAIGHT, handCards(cardSet));
             }
             if (ranks.size() == 2) {
                 // Look for four of a kind
                 if (cardsByRank.get(ranks.get(0)).size() == 4 ||
                         cardsByRank.get(ranks.get(1)).size() == 4)
-                    return new Hand(FOUR_OF_A_KIND, handCards);
+                    return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
                     // Look for full house
                 else {
-                    return new Hand(FULL_HOUSE, handCards);
+                    return new Hand(FULL_HOUSE, handCards(cardSet));
                 }
             } else if (ranks.size() == 3) {
                 // Look for 3 of a kind
                 if (cardsByRank.get(ranks.get(0)).size() == 3 ||
                         cardsByRank.get(ranks.get(1)).size() == 3 ||
                         cardsByRank.get(ranks.get(2)).size() == 3)
-                    return new Hand(THREE_OF_A_KIND, handCards);
+                    return new Hand(THREE_OF_A_KIND, handCards(cardSet));
 
                 // Look for 2 pairs
                 if (cardsByRank.get(ranks.get(0)).size() == 1 ||
                         cardsByRank.get(ranks.get(1)).size() == 1 ||
                         cardsByRank.get(ranks.get(2)).size() == 1)
-                    return new Hand(TWO_PAIRS, handCards);
+                    return new Hand(TWO_PAIRS, handCards(cardSet));
             } else if (ranks.size() == 4) {
-                return new Hand(ONE_PAIR, handCards);
+                return new Hand(ONE_PAIR, handCards(cardSet));
             }
         }
 
-        return new Hand(HIGH_CARD, handCards);
+        return new Hand(HIGH_CARD, handCards(cardSet));
+    }
+
+    private List<Card> handCards(CardSet cardSet) {
+        return cardSet.getSortedCards();
     }
 
     private boolean isSequential(CardSet cardSet) {
-        List<Card> handCards = cardSet.getSortedCards();
+        return isSequential(handCards(cardSet));
+    }
+
+    private boolean isSequential(List<Card> handCards) {
         // Check for straight
         int firstOrdinal = handCards.get(0).getRank().ordinal();
         int secondOrdinal = handCards.get(1).getRank().ordinal();
