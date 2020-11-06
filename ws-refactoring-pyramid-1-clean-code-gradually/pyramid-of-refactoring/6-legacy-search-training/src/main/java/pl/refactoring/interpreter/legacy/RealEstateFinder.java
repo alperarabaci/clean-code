@@ -80,11 +80,7 @@ public class RealEstateFinder {
         PlacementSpec placementSpec = new PlacementSpec(placement);
         MaterialSpec materialSpec = new MaterialSpec(material);
 
-        List<RealEstate> foundRealEstates = new ArrayList<>();
-        for (RealEstate estate : repository) {
-            if (typeSpec.isSatisfiedBy(estate) && placementSpec.isSatisfiedBy(estate) && materialSpec.isSatisfiedBy(estate))
-                foundRealEstates.add(estate);
-        }
+        List<RealEstate> foundRealEstates = repository.stream().filter(estate -> typeSpec.isSatisfiedBy(estate) && placementSpec.isSatisfiedBy(estate) && materialSpec.isSatisfiedBy(estate)).collect(Collectors.toList());
         return foundRealEstates;
     }
 }
