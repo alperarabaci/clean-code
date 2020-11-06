@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static pl.refactoring.interpreter.legacy.specs.Specs.ofAreaRange;
-import static pl.refactoring.interpreter.legacy.specs.MaterialSpec.ofMaterial;
+import static pl.refactoring.interpreter.legacy.specs.Specs.ofMaterial;
 import static pl.refactoring.interpreter.legacy.specs.NotSpec.not;
 import static pl.refactoring.interpreter.legacy.specs.PlacementSpec.placedIn;
 import static pl.refactoring.interpreter.legacy.specs.TypeSpec.ofType;

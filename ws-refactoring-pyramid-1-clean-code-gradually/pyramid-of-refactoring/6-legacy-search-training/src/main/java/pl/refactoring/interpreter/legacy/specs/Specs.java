@@ -1,5 +1,7 @@
 package pl.refactoring.interpreter.legacy.specs;
 
+import pl.refactoring.interpreter.legacy.EstateMaterial;
+
 /**
  * alper - 06/11/2020
  */
@@ -14,5 +16,9 @@ public class Specs {
 
     public static BelowAreaSpec blowArea(float maxBuildingArea) {
         return new BelowAreaSpec(maxBuildingArea);
+    }
+
+    public static MaterialSpec ofMaterial(EstateMaterial material) {
+        return new MaterialSpec(material);
     }
 }

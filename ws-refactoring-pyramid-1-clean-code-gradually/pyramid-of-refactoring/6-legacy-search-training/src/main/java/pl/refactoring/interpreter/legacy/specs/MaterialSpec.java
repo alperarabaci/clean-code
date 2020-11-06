@@ -7,16 +7,12 @@ import pl.refactoring.interpreter.legacy.Spec;
 /**
  * alper - 05/11/2020
  */
-public class MaterialSpec implements Spec {
+class MaterialSpec implements Spec {
 
     private EstateMaterial material;
 
-    private MaterialSpec(EstateMaterial material) {
+    MaterialSpec(EstateMaterial material) {
         this.material = material;
-    }
-
-    public static MaterialSpec ofMaterial(EstateMaterial material) {
-        return new MaterialSpec(material);
     }
 
     public EstateMaterial getMaterial() {
