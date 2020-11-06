@@ -3,12 +3,10 @@ package pl.refactoring.interpreter.legacy.specs;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import pl.refactoring.interpreter.legacy.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,7 +30,7 @@ class AndSpecTest {
 
     @Test
     public void multipleTrue() {
-        AndSpec andSpec = new AndSpec(yesSpec, yesSpec);
+        AndSpec andSpec = new AndSpecBuilder().withSpec(yesSpec, yesSpec).createAndSpec();
 
         assertThat(andSpec.isSatisfiedBy(BRICK_VILLAGE_BUNGALLOW))
                 .isTrue();
@@ -42,7 +40,7 @@ class AndSpecTest {
 
     @Test
     public void multipleFalse() {
-        AndSpec andSpec = new AndSpec(noSpec, noSpec);
+        AndSpec andSpec = new AndSpecBuilder().withSpec(noSpec, noSpec).createAndSpec();
 
         assertThat(andSpec.isSatisfiedBy(BRICK_VILLAGE_BUNGALLOW))
                 .isTrue();

@@ -54,7 +54,7 @@ public class RealEstateFinder {
         Spec specArea = Specs.blowArea(maxBuildingArea);
         Spec specMaterial = ofMaterial(material);
 
-        return bySpec(new AndSpec(specArea, specMaterial));
+        return bySpec(new AndSpecBuilder().withSpec(specArea, specMaterial).createAndSpec());
     }
 
     public List<RealEstate> byPlacement(EstatePlacement placement){
@@ -83,6 +83,6 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byTypePlacementMaterial(EstateType type, EstatePlacement placement, EstateMaterial material){
-        return bySpec(new AndSpec(ofType(type), placedIn(placement), ofMaterial(material)));
+        return bySpec(new AndSpecBuilder().withSpec(ofType(type), placedIn(placement), ofMaterial(material)).createAndSpec());
     }
 }
