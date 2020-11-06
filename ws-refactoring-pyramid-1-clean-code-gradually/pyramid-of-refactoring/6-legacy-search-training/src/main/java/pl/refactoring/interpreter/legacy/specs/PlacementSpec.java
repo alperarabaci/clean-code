@@ -11,16 +11,16 @@ public class PlacementSpec implements Spec {
 
     private EstatePlacement placement;
 
-    public PlacementSpec(EstatePlacement placement) {
+    private PlacementSpec(EstatePlacement placement) {
         this.placement = placement;
     }
 
-    public EstatePlacement getPlacement() {
-        return placement;
+    public static PlacementSpec placedIn(EstatePlacement placement) {
+        return new PlacementSpec(placement);
     }
 
     @Override
     public boolean isSatisfiedBy(RealEstate estate) {
-        return getPlacement().equals(estate.getPlacement());
+        return placement.equals(estate.getPlacement());
     }
 }

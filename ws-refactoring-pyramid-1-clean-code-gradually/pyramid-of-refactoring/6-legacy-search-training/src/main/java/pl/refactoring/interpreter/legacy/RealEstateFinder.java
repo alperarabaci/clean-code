@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static pl.refactoring.interpreter.legacy.specs.MaterialSpec.ofMaterial;
+import static pl.refactoring.interpreter.legacy.specs.PlacementSpec.placedIn;
 
 /**
  * Copyright (c) 2020 IT Train Wlodzimierz Krakowski (www.refactoring.pl)
@@ -54,11 +55,11 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byPlacement(EstatePlacement placement){
-        return bySpec(new PlacementSpec(placement));
+        return bySpec(placedIn(placement));
     }
 
     public List<RealEstate> byAvoidingPlacement(EstatePlacement placement){
-        return bySpec(new NotSpec(new PlacementSpec(placement)));
+        return bySpec(new NotSpec(placedIn(placement)));
     }
 
     public List<RealEstate> byAreaRange(float minArea, float maxArea){
@@ -77,7 +78,7 @@ public class RealEstateFinder {
 
     public List<RealEstate> byTypePlacementMaterial(EstateType type, EstatePlacement placement, EstateMaterial material){
         TypeSpec typeSpec = new TypeSpec(type);
-        PlacementSpec placementSpec = new PlacementSpec(placement);
+        PlacementSpec placementSpec = placedIn(placement);
         MaterialSpec materialSpec = ofMaterial(material);
 
         Spec andSpec = new AndSpec(typeSpec, placementSpec, materialSpec);
