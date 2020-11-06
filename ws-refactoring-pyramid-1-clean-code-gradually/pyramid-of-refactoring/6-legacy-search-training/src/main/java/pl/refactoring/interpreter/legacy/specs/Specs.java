@@ -1,6 +1,7 @@
 package pl.refactoring.interpreter.legacy.specs;
 
 import pl.refactoring.interpreter.legacy.EstateMaterial;
+import pl.refactoring.interpreter.legacy.Spec;
 
 /**
  * alper - 06/11/2020
@@ -20,5 +21,9 @@ public class Specs {
 
     public static MaterialSpec ofMaterial(EstateMaterial material) {
         return new MaterialSpec(material);
+    }
+
+    public static NotSpec not(Spec placementSpec) {
+        return new NotSpec(placementSpec);
     }
 }
