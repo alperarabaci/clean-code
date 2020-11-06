@@ -8,6 +8,8 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
+
 /**
  * Copyright (c) 2020 IT Train Wlodzimierz Krakowski (www.refactoring.pl)
  * <p>
@@ -59,5 +61,10 @@ public class CardSet {
                 && secondOrdinal + 1 == thirdOrdinal
                 && thirdOrdinal + 1 == fourthOrdinal
                 && fourthOrdinal + 1 == fifthOrdinal;
+    }
+
+    boolean hasRankDiversity(int rankDiversity) {
+        return getSortedCards().stream()
+                .collect(groupingBy(Card::getRank)).size() == rankDiversity;
     }
 }
