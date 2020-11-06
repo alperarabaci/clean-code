@@ -5,6 +5,7 @@ import pl.refactoring.interpreter.legacy.specs.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.refactoring.interpreter.legacy.specs.AreaRangeSpec.ofAreaRange;
 import static pl.refactoring.interpreter.legacy.specs.BelowAreaSpec.*;
 import static pl.refactoring.interpreter.legacy.specs.MaterialSpec.ofMaterial;
 import static pl.refactoring.interpreter.legacy.specs.NotSpec.not;
@@ -70,9 +71,11 @@ public class RealEstateFinder {
          * Extract to temp method
          * IntelliJ IDEA refactor menu: fn + kntrl + T (eclipse style)
          * After generate Introduce Parameter Object "inline parameter": cmd +alt + I (eclipse style)
+         *
+         * Then Replace Constructor with Factory Method
+         * Then static import
          */
-        Spec rangeAreaSpec = new AreaRangeSpec(minArea, maxArea);
-        return bySpec(rangeAreaSpec);
+        return bySpec(ofAreaRange(minArea, maxArea));
     }
 
     public List<RealEstate> byType(EstateType type){
