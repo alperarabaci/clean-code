@@ -5,7 +5,7 @@ import pl.refactoring.interpreter.legacy.specs.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static pl.refactoring.interpreter.legacy.specs.AreaRangeSpec.ofAreaRange;
+import static pl.refactoring.interpreter.legacy.specs.Specs.ofAreaRange;
 import static pl.refactoring.interpreter.legacy.specs.BelowAreaSpec.*;
 import static pl.refactoring.interpreter.legacy.specs.MaterialSpec.ofMaterial;
 import static pl.refactoring.interpreter.legacy.specs.NotSpec.not;
