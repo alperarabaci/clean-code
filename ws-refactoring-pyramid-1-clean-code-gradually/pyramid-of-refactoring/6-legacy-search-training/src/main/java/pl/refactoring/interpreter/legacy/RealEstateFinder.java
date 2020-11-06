@@ -48,8 +48,8 @@ public class RealEstateFinder {
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
         //I don't prefer using inline variable at this method:
         //after static factory, I prefer. :)
-        return bySpec(new AndSpecBuilder()
-                .withSpec(blowArea(maxBuildingArea), ofMaterial(material))
+        return bySpec(new AndSpecBuilder().withSpec(blowArea(maxBuildingArea))
+                .withSpec(ofMaterial(material))
                 .createAndSpec());
     }
 
@@ -79,8 +79,9 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byTypePlacementMaterial(EstateType type, EstatePlacement placement, EstateMaterial material){
-        return bySpec(new AndSpecBuilder()
-                .withSpec(ofType(type), placedIn(placement), ofMaterial(material))
+        return bySpec(new AndSpecBuilder().withSpec(ofType(type))
+                .withSpec(placedIn(placement))
+                .withSpec(ofMaterial(material))
                 .createAndSpec());
     }
 }

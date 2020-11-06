@@ -30,7 +30,8 @@ class AndSpecTest {
 
     @Test
     public void multipleTrue() {
-        AndSpec andSpec = new AndSpecBuilder().withSpec(yesSpec, yesSpec).createAndSpec();
+        AndSpec andSpec = new AndSpecBuilder().withSpec(yesSpec)
+                .withSpec(yesSpec).createAndSpec();
 
         assertThat(andSpec.isSatisfiedBy(BRICK_VILLAGE_BUNGALLOW))
                 .isTrue();
@@ -40,7 +41,8 @@ class AndSpecTest {
 
     @Test
     public void multipleFalse() {
-        AndSpec andSpec = new AndSpecBuilder().withSpec(noSpec, noSpec).createAndSpec();
+        AndSpec andSpec = new AndSpecBuilder().withSpec(noSpec)
+                .withSpec(noSpec).createAndSpec();
 
         assertThat(andSpec.isSatisfiedBy(BRICK_VILLAGE_BUNGALLOW))
                 .isTrue();
