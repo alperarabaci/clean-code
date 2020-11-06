@@ -43,11 +43,11 @@ public class HandResolver {
                 .collect(Collectors.toList());
 
         int rankDiversity = 5;
-        if (cardsByRank.size() == rankDiversity) {
+        if (hasRankDiversity(cardsByRank, rankDiversity)) {
             if (cardSet.isSequential())
                 return new Hand(STRAIGHT, handCards(cardSet));
         }
-        if (cardsByRank.size() == 2) {
+        if (hasRankDiversity(cardsByRank, 2)) {
             // Look for four of a kind
             if (cardsByRank.get(ranks.get(0)).size() == 4 ||
                     cardsByRank.get(ranks.get(1)).size() == 4)
@@ -56,7 +56,7 @@ public class HandResolver {
             else {
                 return new Hand(FULL_HOUSE, handCards(cardSet));
             }
-        } else if (cardsByRank.size() == 3) {
+        } else if (hasRankDiversity(cardsByRank, 3)) {
             // Look for 3 of a kind
             if (cardsByRank.get(ranks.get(0)).size() == 3 ||
                     cardsByRank.get(ranks.get(1)).size() == 3 ||
@@ -68,11 +68,15 @@ public class HandResolver {
                     cardsByRank.get(ranks.get(1)).size() == 1 ||
                     cardsByRank.get(ranks.get(2)).size() == 1)
                 return new Hand(TWO_PAIRS, handCards(cardSet));
-        } else if (cardsByRank.size() == 4) {
+        } else if (hasRankDiversity(cardsByRank, 4)) {
             return new Hand(ONE_PAIR, handCards(cardSet));
         }
 
         return new Hand(HIGH_CARD, handCards(cardSet));
+    }
+
+    private boolean hasRankDiversity(Map<RANK, List<Card>> cardsByRank, int rankDiversity) {
+        return cardsByRank.size() == rankDiversity;
     }
 
     private List<Card> handCards(CardSet cardSet) {
