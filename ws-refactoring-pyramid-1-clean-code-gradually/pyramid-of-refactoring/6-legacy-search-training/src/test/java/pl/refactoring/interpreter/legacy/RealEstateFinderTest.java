@@ -81,9 +81,9 @@ public class RealEstateFinderTest {
         List<RealEstate> foundResults = FINDER.byMaterial(EstateMaterial.WOOD);
 
         //then
-        assertEquals(2, foundResults.size(), "found 2 estates");
-        assertTrue(foundResults.contains(WOODEN_VILLAGE_BUNGALLOW));
-        assertTrue(foundResults.contains(WOODEN_VILLAGE_HOUSE));
+        assertThat(foundResults)
+                .hasSize(2)
+                .containsExactlyInAnyOrder(WOODEN_VILLAGE_BUNGALLOW, WOODEN_VILLAGE_HOUSE);
     }
 
     @Test
@@ -92,8 +92,9 @@ public class RealEstateFinderTest {
         List<RealEstate> foundResults = FINDER.byMaterialBelowArea(EstateMaterial.WOOD, 150);
 
         //then
-        assertEquals(1, foundResults.size(), "found 1 estate");
-        assertTrue(foundResults.contains(WOODEN_VILLAGE_BUNGALLOW));
+        assertThat(foundResults)
+                .hasSize(1)
+                .containsExactly(WOODEN_VILLAGE_BUNGALLOW);
     }
 
     @Test
@@ -102,9 +103,10 @@ public class RealEstateFinderTest {
         List<RealEstate> foundResults = FINDER.byPlacement(EstatePlacement.TOWN);
 
         //then
-        assertEquals(2, foundResults.size(), "found 2 estates");
-        assertTrue(foundResults.contains(BRICK_TOWN_HOUSE));
-        assertTrue(foundResults.contains(STONE_TOWN_CASTLE));
+        assertThat(foundResults)
+                .hasSize(2)
+                .contains(BRICK_TOWN_HOUSE)
+                .contains(STONE_TOWN_CASTLE);
     }
 
     @Test
@@ -113,11 +115,12 @@ public class RealEstateFinderTest {
         List<RealEstate> foundResults = FINDER.byAvoidingPlacement(EstatePlacement.VILLAGE);
 
         //then
-        assertEquals(4, foundResults.size(), "found 4 estates");
-        assertTrue(foundResults.contains(STONE_TOWN_CASTLE));
-        assertTrue(foundResults.contains(BRICK_TOWN_HOUSE));
-        assertTrue(foundResults.contains(BRICK_CITY_FLAT));
-        assertTrue(foundResults.contains(FERROCONCRETE_CITY_FLAT));
+        assertThat(foundResults)
+                .hasSize(4)
+                .contains(STONE_TOWN_CASTLE)
+                .contains(BRICK_TOWN_HOUSE)
+                .contains(BRICK_CITY_FLAT)
+                .contains(FERROCONCRETE_CITY_FLAT);
     }
 
     @Test
@@ -126,9 +129,10 @@ public class RealEstateFinderTest {
         List<RealEstate> foundResults = FINDER.byAreaRange(130, 140);
 
         //then
-        assertEquals(2, foundResults.size(), "found 2 estates");
-        assertTrue(foundResults.contains(BRICK_VILLAGE_BUNGALLOW));
-        assertTrue(foundResults.contains(WOODEN_VILLAGE_BUNGALLOW));
+        assertThat(foundResults)
+                .hasSize(2)
+                .contains(BRICK_VILLAGE_BUNGALLOW)
+                .contains(WOODEN_VILLAGE_BUNGALLOW);
     }
 
     @Test
@@ -137,9 +141,10 @@ public class RealEstateFinderTest {
         List<RealEstate> foundResults = FINDER.byType(EstateType.HOUSE);
 
         //then
-        assertEquals(2, foundResults.size(), "found 2 estates");
-        assertTrue(foundResults.contains(BRICK_TOWN_HOUSE));
-        assertTrue(foundResults.contains(WOODEN_VILLAGE_HOUSE));
+        assertThat(foundResults)
+                .hasSize(2)
+                .contains(BRICK_TOWN_HOUSE)
+                .contains(WOODEN_VILLAGE_HOUSE);
     }
 
     @Test
@@ -148,7 +153,8 @@ public class RealEstateFinderTest {
         List<RealEstate> foundResults = FINDER.byTypePlacementMaterial(EstateType.CASTLE, EstatePlacement.TOWN, EstateMaterial.STONE);
 
         //then
-        assertEquals(1, foundResults.size(), "found 1 estate");
-        assertTrue(foundResults.contains(STONE_TOWN_CASTLE));
+        assertThat(foundResults)
+                .hasSize(1)
+                .contains(STONE_TOWN_CASTLE);
     }
 }
