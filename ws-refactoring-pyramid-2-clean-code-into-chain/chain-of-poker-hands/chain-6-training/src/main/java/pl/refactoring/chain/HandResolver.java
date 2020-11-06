@@ -24,17 +24,12 @@ import static pl.refactoring.chain.RANKING.*;
 public class HandResolver {
     public Hand hand(CardSet cardSet) {
 
-        if (cardSet.isAllSameSuit()) {
-            // Check for straight flush
-            if (cardSet.isSequential())
-                return new Hand(STRAIGHT_FLUSH, handCards(cardSet));
-        }
+        if (cardSet.isAllSameSuit() && cardSet.isSequential())
+            return new Hand(STRAIGHT_FLUSH, handCards(cardSet));
 
-        if (cardSet.isAllSameSuit()) {
-            // Check for straight flush
-            if (!cardSet.isSequential())
-                return new Hand(FLUSH, handCards(cardSet));
-        }
+        if (cardSet.isAllSameSuit() && !cardSet.isSequential())
+            return new Hand(FLUSH, handCards(cardSet));
+
         // else
         // TODO Below logic assumed that cards belong to different suites
         {
