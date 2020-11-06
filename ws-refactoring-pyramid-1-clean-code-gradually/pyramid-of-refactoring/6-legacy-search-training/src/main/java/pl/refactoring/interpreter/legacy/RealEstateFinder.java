@@ -5,6 +5,8 @@ import pl.refactoring.interpreter.legacy.specs.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.refactoring.interpreter.legacy.specs.MaterialSpec.ofMaterial;
+
 /**
  * Copyright (c) 2020 IT Train Wlodzimierz Krakowski (www.refactoring.pl)
  * Sources are available only for personal usage by Udemy students of this course.
@@ -40,13 +42,13 @@ public class RealEstateFinder {
     }
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
-        return bySpec(new MaterialSpec(material));
+        return bySpec(ofMaterial(material));
     }
 
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
         //I don't prefer using inline variable at this method:
         Spec specArea = BelowAreaSpec.create(maxBuildingArea);
-        Spec specMaterial = new MaterialSpec(material);
+        Spec specMaterial = ofMaterial(material);
 
         return bySpec(new AndSpec(specArea, specMaterial));
     }
@@ -76,7 +78,7 @@ public class RealEstateFinder {
     public List<RealEstate> byTypePlacementMaterial(EstateType type, EstatePlacement placement, EstateMaterial material){
         TypeSpec typeSpec = new TypeSpec(type);
         PlacementSpec placementSpec = new PlacementSpec(placement);
-        MaterialSpec materialSpec = new MaterialSpec(material);
+        MaterialSpec materialSpec = ofMaterial(material);
 
         Spec andSpec = new AndSpec(typeSpec, placementSpec, materialSpec);
 
