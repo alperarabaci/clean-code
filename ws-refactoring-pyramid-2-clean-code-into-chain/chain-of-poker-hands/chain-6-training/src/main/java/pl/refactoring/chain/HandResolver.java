@@ -42,11 +42,11 @@ public class HandResolver {
                 .stream()
                 .collect(Collectors.toList());
 
-        if (ranks.size() == 5) {
+        if (cardsByRank.size() == 5) {
             if (cardSet.isSequential())
                 return new Hand(STRAIGHT, handCards(cardSet));
         }
-        if (ranks.size() == 2) {
+        if (cardsByRank.size() == 2) {
             // Look for four of a kind
             if (cardsByRank.get(ranks.get(0)).size() == 4 ||
                     cardsByRank.get(ranks.get(1)).size() == 4)
@@ -55,7 +55,7 @@ public class HandResolver {
             else {
                 return new Hand(FULL_HOUSE, handCards(cardSet));
             }
-        } else if (ranks.size() == 3) {
+        } else if (cardsByRank.size() == 3) {
             // Look for 3 of a kind
             if (cardsByRank.get(ranks.get(0)).size() == 3 ||
                     cardsByRank.get(ranks.get(1)).size() == 3 ||
@@ -67,7 +67,7 @@ public class HandResolver {
                     cardsByRank.get(ranks.get(1)).size() == 1 ||
                     cardsByRank.get(ranks.get(2)).size() == 1)
                 return new Hand(TWO_PAIRS, handCards(cardSet));
-        } else if (ranks.size() == 4) {
+        } else if (cardsByRank.size() == 4) {
             return new Hand(ONE_PAIR, handCards(cardSet));
         }
 
