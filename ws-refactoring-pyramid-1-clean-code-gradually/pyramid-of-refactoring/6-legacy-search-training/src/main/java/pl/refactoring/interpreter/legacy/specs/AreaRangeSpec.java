@@ -3,7 +3,7 @@ package pl.refactoring.interpreter.legacy.specs;
 import pl.refactoring.interpreter.legacy.RealEstate;
 import pl.refactoring.interpreter.legacy.Spec;
 
-public class AreaRangeSpec implements Spec {
+class AreaRangeSpec implements Spec {
     private final float minArea;
     private final float maxArea;
 
