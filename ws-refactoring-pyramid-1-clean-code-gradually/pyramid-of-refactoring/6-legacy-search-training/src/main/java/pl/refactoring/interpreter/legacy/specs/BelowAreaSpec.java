@@ -7,8 +7,16 @@ public class BelowAreaSpec implements Spec {
 
 	private float maxBuildingArea;
 
-	public BelowAreaSpec(float maxBuildingArea) {
+	/**
+	 * IntelliJ IDEA refactor menu: fn + kntrl + T (eclipse style)
+	 * Then select "Replace Constructor with Factory Method"
+	 */
+	private BelowAreaSpec(float maxBuildingArea) {
 		this.maxBuildingArea = maxBuildingArea;
+	}
+
+	public static BelowAreaSpec create(float maxBuildingArea) {
+		return new BelowAreaSpec(maxBuildingArea);
 	}
 
 	public float getMaxBuildingArea() {

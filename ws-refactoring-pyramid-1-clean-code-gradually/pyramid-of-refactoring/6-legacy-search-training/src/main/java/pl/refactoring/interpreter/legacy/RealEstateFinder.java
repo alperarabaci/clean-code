@@ -2,8 +2,6 @@ package pl.refactoring.interpreter.legacy;
 
 import pl.refactoring.interpreter.legacy.specs.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +36,7 @@ public class RealEstateFinder {
          * spec variable removed, used inline variable
          * alt cmd I: inline selected method or variable (IntelliJ IDEA, i will check it in Eclipse too)
          */
-        return bySpec(new BelowAreaSpec(maxBuildingArea));
+        return bySpec(BelowAreaSpec.create(maxBuildingArea));
     }
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
@@ -47,7 +45,7 @@ public class RealEstateFinder {
 
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
         //I don't prefer using inline variable at this method:
-        Spec specArea = new BelowAreaSpec(maxBuildingArea);
+        Spec specArea = BelowAreaSpec.create(maxBuildingArea);
         Spec specMaterial = new MaterialSpec(material);
 
         return bySpec(new AndSpec(specArea, specMaterial));
