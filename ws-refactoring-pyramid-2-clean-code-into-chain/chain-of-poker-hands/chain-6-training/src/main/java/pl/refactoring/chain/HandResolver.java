@@ -55,7 +55,9 @@ public class HandResolver {
             else {
                 return new Hand(FULL_HOUSE, handCards(cardSet));
             }
-        } else if (cardSet.hasRankDiversity(3)) {
+        }
+
+        if (cardSet.hasRankDiversity(3)) {
             // Look for 3 of a kind
             if (cardsByRank(cardSet).get(ranks.get(0)).size() == 3 ||
                     cardsByRank(cardSet).get(ranks.get(1)).size() == 3 ||
@@ -67,7 +69,9 @@ public class HandResolver {
                     cardsByRank(cardSet).get(ranks.get(1)).size() == 1 ||
                     cardsByRank(cardSet).get(ranks.get(2)).size() == 1)
                 return new Hand(TWO_PAIRS, handCards(cardSet));
-        } else if (cardSet.hasRankDiversity(4)) {
+        }
+
+        if (cardSet.hasRankDiversity(4)) {
             return new Hand(ONE_PAIR, handCards(cardSet));
         }
 
