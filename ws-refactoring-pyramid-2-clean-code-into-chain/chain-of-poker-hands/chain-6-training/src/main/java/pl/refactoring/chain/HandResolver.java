@@ -36,10 +36,11 @@ public class HandResolver {
             int fourthOrdinal = handCards.get(3).getRank().ordinal();
             int fifthOrdinal = handCards.get(4).getRank().ordinal();
 
-            if (firstOrdinal + 1 == secondOrdinal
+            boolean isSequential = firstOrdinal + 1 == secondOrdinal
                     && secondOrdinal + 1 == thirdOrdinal
                     && thirdOrdinal + 1 == fourthOrdinal
-                    && fourthOrdinal + 1 == fifthOrdinal)
+                    && fourthOrdinal + 1 == fifthOrdinal;
+            if (isSequential)
                 return new Hand(STRAIGHT_FLUSH, handCards);
             else
                 return new Hand(FLUSH, handCards);
