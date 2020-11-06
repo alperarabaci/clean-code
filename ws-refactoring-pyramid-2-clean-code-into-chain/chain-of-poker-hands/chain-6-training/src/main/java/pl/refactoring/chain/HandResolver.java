@@ -26,13 +26,13 @@ public class HandResolver {
 
         if (cardSet.isAllSameSuit()) {
             // Check for straight flush
-            if (isSequential(cardSet))
+            if (cardSet.isSequential())
                 return new Hand(STRAIGHT_FLUSH, handCards(cardSet));
         }
 
         if (cardSet.isAllSameSuit()) {
             // Check for straight flush
-            if (!isSequential(cardSet))
+            if (!cardSet.isSequential())
                 return new Hand(FLUSH, handCards(cardSet));
         }
         // else
@@ -45,7 +45,7 @@ public class HandResolver {
                     .stream()
                     .collect(Collectors.toList());
             if (ranks.size() == 5) {
-                boolean isSequential = isSequential(cardSet);
+                boolean isSequential = cardSet.isSequential();
                 if (isSequential)
                     return new Hand(STRAIGHT, handCards(cardSet));
             }
@@ -80,21 +80,6 @@ public class HandResolver {
 
     private List<Card> handCards(CardSet cardSet) {
         return cardSet.getSortedCards();
-    }
-
-    private boolean isSequential(CardSet cardSet) {
-        List<Card> handCards = cardSet.getSortedCards();
-        // Check for straight
-        int firstOrdinal = handCards.get(0).getRank().ordinal();
-        int secondOrdinal = handCards.get(1).getRank().ordinal();
-        int thirdOrdinal = handCards.get(2).getRank().ordinal();
-        int fourthOrdinal = handCards.get(3).getRank().ordinal();
-        int fifthOrdinal = handCards.get(4).getRank().ordinal();
-
-        return firstOrdinal + 1 == secondOrdinal
-                && secondOrdinal + 1 == thirdOrdinal
-                && thirdOrdinal + 1 == fourthOrdinal
-                && fourthOrdinal + 1 == fifthOrdinal;
     }
 
 }
