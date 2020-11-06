@@ -79,11 +79,8 @@ public class HandResolver {
     }
 
     private boolean hasRankDiversity(CardSet cardSet, int rankDiversity) {
-        return hasRankDiversity(cardsByRank(cardSet), rankDiversity);
-    }
-
-    private boolean hasRankDiversity(Map<RANK, List<Card>> cardsByRank, int rankDiversity) {
-        return cardsByRank.size() == rankDiversity;
+        return cardSet.getSortedCards().stream()
+                .collect(groupingBy(Card::getRank)).size() == rankDiversity;
     }
 
     private List<Card> handCards(CardSet cardSet) {
