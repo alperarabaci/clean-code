@@ -7,7 +7,7 @@ import pl.refactoring.interpreter.legacy.Spec;
 /**
  * alper - 05/11/2020
  */
-public class PlacementSpec implements Spec {
+class PlacementSpec implements Spec {
 
     private EstatePlacement placement;
 
