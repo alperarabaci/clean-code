@@ -26,12 +26,9 @@ public class HandResolver {
     public Hand hand(CardSet cardSet) {
         List<Card> handCards = cardSet.getSortedCards();
 
-        boolean allSameSuit = isAllSameSuit(handCards);
-
-        if (allSameSuit) {
+        if (isAllSameSuit(handCards)) {
             // Check for straight flush
-            boolean isSequential = isSequential(handCards);
-            if (isSequential)
+            if (isSequential(handCards))
                 return new Hand(STRAIGHT_FLUSH, handCards);
             else
                 return new Hand(FLUSH, handCards);
