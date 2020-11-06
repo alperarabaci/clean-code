@@ -83,10 +83,7 @@ public class HandResolver {
     }
 
     private boolean isSequential(CardSet cardSet) {
-        return isSequential(handCards(cardSet));
-    }
-
-    private boolean isSequential(List<Card> handCards) {
+        List<Card> handCards = cardSet.getSortedCards();
         // Check for straight
         int firstOrdinal = handCards.get(0).getRank().ordinal();
         int secondOrdinal = handCards.get(1).getRank().ordinal();
