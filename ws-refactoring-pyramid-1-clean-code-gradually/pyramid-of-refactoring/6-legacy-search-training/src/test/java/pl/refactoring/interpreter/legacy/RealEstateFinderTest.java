@@ -12,6 +12,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -68,11 +69,10 @@ public class RealEstateFinderTest {
     public void findSmallRealEstates() {
         //when
         List<RealEstate> foundResults = FINDER.byBelowArea(70);
-
         //then
-        assertEquals(2, foundResults.size(), "found 2 estates");
-        assertTrue(foundResults.contains(FERROCONCRETE_CITY_FLAT));
-        assertTrue(foundResults.contains(BRICK_CITY_FLAT));
+        assertThat(foundResults)
+                .hasSize(2)
+                .containsExactlyInAnyOrder(FERROCONCRETE_CITY_FLAT, BRICK_CITY_FLAT);
     }
 
     @Test
