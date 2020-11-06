@@ -26,13 +26,13 @@ public class HandResolver {
     public Hand hand(CardSet cardSet) {
         List<Card> handCards = cardSet.getSortedCards();
 
-        if (isAllSameSuit(handCards)) {
+        if (isAllSameSuit(cardSet)) {
             // Check for straight flush
             if (isSequential(handCards))
                 return new Hand(STRAIGHT_FLUSH, handCards);
         }
 
-        if (isAllSameSuit(handCards)) {
+        if (isAllSameSuit(cardSet)) {
             // Check for straight flush
             if (!isSequential(handCards))
                 return new Hand(FLUSH, handCards);
@@ -94,7 +94,8 @@ public class HandResolver {
                 && fourthOrdinal + 1 == fifthOrdinal;
     }
 
-    private boolean isAllSameSuit(List<Card> handCards) {
+    private boolean isAllSameSuit(CardSet cardSet) {
+        List<Card> handCards = cardSet.getSortedCards();
         SUIT suitCandidate = handCards.get(0).getSuit();
         return handCards.stream()
                 .allMatch(card -> card.getSuit().equals(suitCandidate));
