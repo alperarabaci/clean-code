@@ -15,7 +15,7 @@ public class BelowAreaSpec implements Spec {
 		this.maxBuildingArea = maxBuildingArea;
 	}
 
-	public static BelowAreaSpec create(float maxBuildingArea) {
+	public static BelowAreaSpec blowArea(float maxBuildingArea) {
 		return new BelowAreaSpec(maxBuildingArea);
 	}
 
