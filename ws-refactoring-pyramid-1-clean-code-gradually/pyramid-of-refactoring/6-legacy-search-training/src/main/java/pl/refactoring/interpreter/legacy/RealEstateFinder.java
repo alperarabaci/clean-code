@@ -48,7 +48,8 @@ public class RealEstateFinder {
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
         //I don't prefer using inline variable at this method:
         //after static factory, I prefer. :)
-        return bySpec(new AndSpecBuilder().withSpec(blowArea(maxBuildingArea))
+        return bySpec(new AndSpecBuilder()
+                .withSpec(blowArea(maxBuildingArea))
                 .withSpec(ofMaterial(material))
                 .createAndSpec());
     }
