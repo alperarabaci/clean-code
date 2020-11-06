@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static pl.refactoring.interpreter.legacy.specs.Specs.ofAreaRange;
-import static pl.refactoring.interpreter.legacy.specs.BelowAreaSpec.*;
 import static pl.refactoring.interpreter.legacy.specs.MaterialSpec.ofMaterial;
 import static pl.refactoring.interpreter.legacy.specs.NotSpec.not;
 import static pl.refactoring.interpreter.legacy.specs.PlacementSpec.placedIn;
@@ -43,7 +42,7 @@ public class RealEstateFinder {
          * spec variable removed, used inline variable
          * alt cmd I: inline selected method or variable (IntelliJ IDEA, i will check it in Eclipse too)
          */
-        return bySpec(blowArea(maxBuildingArea));
+        return bySpec(Specs.blowArea(maxBuildingArea));
     }
 
 	public List<RealEstate> byMaterial(EstateMaterial material){
@@ -52,7 +51,7 @@ public class RealEstateFinder {
 
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
         //I don't prefer using inline variable at this method:
-        Spec specArea = blowArea(maxBuildingArea);
+        Spec specArea = Specs.blowArea(maxBuildingArea);
         Spec specMaterial = ofMaterial(material);
 
         return bySpec(new AndSpec(specArea, specMaterial));

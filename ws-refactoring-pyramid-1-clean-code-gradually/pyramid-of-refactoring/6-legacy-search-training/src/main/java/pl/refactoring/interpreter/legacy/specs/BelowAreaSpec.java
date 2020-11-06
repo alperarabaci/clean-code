@@ -11,16 +11,8 @@ public class BelowAreaSpec implements Spec {
 	 * IntelliJ IDEA refactor menu: fn + kntrl + T (eclipse style)
 	 * Then select "Replace Constructor with Factory Method"
 	 */
-	private BelowAreaSpec(float maxBuildingArea) {
+	BelowAreaSpec(float maxBuildingArea) {
 		this.maxBuildingArea = maxBuildingArea;
-	}
-
-	public static BelowAreaSpec blowArea(float maxBuildingArea) {
-		return new BelowAreaSpec(maxBuildingArea);
-	}
-
-	public float getMaxBuildingArea() {
-		return maxBuildingArea;
 	}
 
 	/**
@@ -31,13 +23,15 @@ public class BelowAreaSpec implements Spec {
 	 * 2. select method and extract to interface: 
 	 * 2.1 cmd + shift + t
 	 * 2.2 extract interface
-	 * 2.3 this refactor also changed BelowAreaSpec declaration as Spec interface in RealEstateFinder 
+	 * 2.3 this refactor also changed BelowAreaSpec declaration as Spec interface in RealEstateFinder
+	 *
+	 * 2.4 cmd + alt + I maxBuildingArea used as inline variable
 	 * @param estate
 	 * @return
 	 */
 	@Override
 	public boolean isSatisfiedBy(RealEstate estate) {
-		return estate.getBuildingArea() < getMaxBuildingArea();
+		return estate.getBuildingArea() < maxBuildingArea;
 	}
 
 }
