@@ -11,12 +11,8 @@ public class PlacementSpec implements Spec {
 
     private EstatePlacement placement;
 
-    private PlacementSpec(EstatePlacement placement) {
+    PlacementSpec(EstatePlacement placement) {
         this.placement = placement;
-    }
-
-    public static PlacementSpec placedIn(EstatePlacement placement) {
-        return new PlacementSpec(placement);
     }
 
     @Override

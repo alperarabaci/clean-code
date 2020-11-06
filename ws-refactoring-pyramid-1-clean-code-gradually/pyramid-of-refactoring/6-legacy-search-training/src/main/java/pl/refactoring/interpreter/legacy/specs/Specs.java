@@ -1,6 +1,8 @@
 package pl.refactoring.interpreter.legacy.specs;
 
 import pl.refactoring.interpreter.legacy.EstateMaterial;
+import pl.refactoring.interpreter.legacy.EstatePlacement;
+import pl.refactoring.interpreter.legacy.EstateType;
 import pl.refactoring.interpreter.legacy.Spec;
 
 /**
@@ -25,5 +27,13 @@ public class Specs {
 
     public static NotSpec not(Spec placementSpec) {
         return new NotSpec(placementSpec);
+    }
+
+    public static PlacementSpec placedIn(EstatePlacement placement) {
+        return new PlacementSpec(placement);
+    }
+
+    public static TypeSpec ofType(EstateType type) {
+        return new TypeSpec(type);
     }
 }
