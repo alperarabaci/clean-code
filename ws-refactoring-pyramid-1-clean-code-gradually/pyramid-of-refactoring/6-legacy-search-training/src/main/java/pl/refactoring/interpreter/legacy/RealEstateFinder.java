@@ -79,8 +79,8 @@ public class RealEstateFinder {
         TypeSpec typeSpec = new TypeSpec(type);
         PlacementSpec placementSpec = new PlacementSpec(placement);
         MaterialSpec materialSpec = new MaterialSpec(material);
+        AndSpec andSpec = new AndSpec(typeSpec, placementSpec, materialSpec);
 
-        List<RealEstate> foundRealEstates = repository.stream().filter(estate -> typeSpec.isSatisfiedBy(estate) && placementSpec.isSatisfiedBy(estate) && materialSpec.isSatisfiedBy(estate)).collect(Collectors.toList());
-        return foundRealEstates;
+        return repository.stream().filter(andSpec::isSatisfiedBy).collect(Collectors.toList());
     }
 }
