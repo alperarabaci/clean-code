@@ -10,6 +10,7 @@ import static pl.refactoring.interpreter.legacy.specs.BelowAreaSpec.*;
 import static pl.refactoring.interpreter.legacy.specs.MaterialSpec.ofMaterial;
 import static pl.refactoring.interpreter.legacy.specs.NotSpec.not;
 import static pl.refactoring.interpreter.legacy.specs.PlacementSpec.placedIn;
+import static pl.refactoring.interpreter.legacy.specs.TypeSpec.ofType;
 
 /**
  * Copyright (c) 2020 IT Train Wlodzimierz Krakowski (www.refactoring.pl)
@@ -79,11 +80,11 @@ public class RealEstateFinder {
     }
 
     public List<RealEstate> byType(EstateType type){
-        return bySpec(new TypeSpec(type));
+        return bySpec(ofType(type));
     }
 
     public List<RealEstate> byTypePlacementMaterial(EstateType type, EstatePlacement placement, EstateMaterial material){
-        TypeSpec typeSpec = new TypeSpec(type);
+        TypeSpec typeSpec = ofType(type);
         PlacementSpec placementSpec = placedIn(placement);
         MaterialSpec materialSpec = ofMaterial(material);
 
