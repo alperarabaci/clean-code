@@ -42,7 +42,8 @@ public class HandResolver {
                 .stream()
                 .collect(Collectors.toList());
 
-        if (cardsByRank.size() == 5) {
+        int rankDiversity = 5;
+        if (cardsByRank.size() == rankDiversity) {
             if (cardSet.isSequential())
                 return new Hand(STRAIGHT, handCards(cardSet));
         }
