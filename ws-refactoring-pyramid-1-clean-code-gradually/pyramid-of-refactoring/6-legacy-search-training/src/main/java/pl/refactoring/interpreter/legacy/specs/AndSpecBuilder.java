@@ -2,15 +2,18 @@ package pl.refactoring.interpreter.legacy.specs;
 
 import pl.refactoring.interpreter.legacy.Spec;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class AndSpecBuilder {
-    private Spec[] specs;
+    private List<Spec> specs;
 
     public AndSpecBuilder withSpec(Spec... specs) {
-        this.specs = specs;
+        this.specs = Arrays.asList(specs);
         return this;
     }
 
     public AndSpec createAndSpec() {
-        return new AndSpec(specs);
+        return new AndSpec(specs.toArray(new Spec[specs.size()]));
     }
 }
