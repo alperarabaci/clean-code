@@ -64,7 +64,7 @@ public class CardSet {
     }
 
     boolean hasRankDiversity(int rankDiversity) {
-        return getSortedCards().stream()
+        return sortedCards.stream()
                 .collect(groupingBy(Card::getRank)).size() == rankDiversity;
     }
 }
