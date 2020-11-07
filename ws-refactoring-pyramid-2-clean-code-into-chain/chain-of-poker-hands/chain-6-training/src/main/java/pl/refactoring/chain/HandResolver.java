@@ -48,11 +48,11 @@ public class HandResolver {
 
         if (cardSet.hasRankDiversity(2)) {
             // Look for four of a kind
-            int expectedRankMultiplicty = 4;
-            if (cardSet.containsRankWithMultiplicity(expectedRankMultiplicty))
+            if (cardSet.containsRankWithMultiplicity(4)) {
                 return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
+            }
                 // Look for full house
-            else {
+            if(cardSet.containsRankWithMultiplicity(3)) {
                 return new Hand(FULL_HOUSE, handCards(cardSet));
             }
         }
