@@ -47,8 +47,4 @@ public class HandResolver {
         .orElseThrow(() -> new IllegalStateException("Poker Hand not recognized."));
     }
 
-    private List<Card> handCards(CardSet cardSet) {
-        return cardSet.getSortedCards();
-    }
-
 }
