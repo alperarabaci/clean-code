@@ -67,18 +67,12 @@ public class HandResolver {
                 cardSet.hasRankDiversity(4)) {
             return new Hand(ONE_PAIR, handCards(cardSet));
         }
-        // else
-        // TODO Below logic assumed that cards belong to different suites
-        // Check for possible x of a kind
+        if (!cardSet.isAllSameSuit() &&
+                cardSet.hasRankDiversity(5)) {
+            return new Hand(HIGH_CARD, handCards(cardSet));
+        }
 
-        List<RANK> ranks = cardsByRank(cardSet).keySet()
-                .stream()
-                .collect(Collectors.toList());
-
-
-
-
-        return new Hand(HIGH_CARD, handCards(cardSet));
+        throw new IllegalStateException("Poker Hand not recognized.");
     }
 
     private Map<RANK, List<Card>> cardsByRank(CardSet cardSet) {
