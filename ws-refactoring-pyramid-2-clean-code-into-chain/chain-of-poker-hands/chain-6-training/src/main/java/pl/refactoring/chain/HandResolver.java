@@ -4,6 +4,7 @@ import pl.refactoring.chain.card.Card;
 import pl.refactoring.chain.specs.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -22,50 +23,28 @@ public class HandResolver {
     private final PokerHandSpec straightFlushSpec = new StraightFlushSpec();
     private final PokerHandSpec fourOfAKindSpec = new FourOfAKindSpec();
     private final PokerHandSpec fullHouseSpec = new FullHouseSpec();
-    private final PokerHandSpec threeOfAKindSpec = new ThreeOfAKindSpec();
     private final PokerHandSpec flushSpec = new FlushSpec();
     private final PokerHandSpec straightSpec = new StraightSpec();
+    private final PokerHandSpec threeOfAKindSpec = new ThreeOfAKindSpec();
     private final PokerHandSpec twoPairsSpec = new TwoPairsSpec();
     private final PokerHandSpec onePairSpec = new OnePairSpec();
     private final PokerHandSpec highCardSpec = new HighCardSpec();
 
     public Hand hand(CardSet cardSet) {
-        if (straightFlushSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(straightFlushSpec.getRanking(), handCards(cardSet));
-        }
-
-        if (flushSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(flushSpec.getRanking(), handCards(cardSet));
-        }
-
-        if (straightSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(straightSpec.getRanking(), handCards(cardSet));
-        }
-
-        if (fourOfAKindSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(fourOfAKindSpec.getRanking(), handCards(cardSet));
-        }
-
-        if (fullHouseSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(fullHouseSpec.getRanking(), handCards(cardSet));
-        }
-
-        if (threeOfAKindSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(threeOfAKindSpec.getRanking(), handCards(cardSet));
-        }
-
-        if (twoPairsSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(twoPairsSpec.getRanking(), handCards(cardSet));
-        }
-
-        if (onePairSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(onePairSpec.getRanking(), handCards(cardSet));
-        }
-
-        if (highCardSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(highCardSpec.getRanking(), handCards(cardSet));
-        }
-        throw new IllegalStateException("Poker Hand not recognized.");
+        return Stream.of(straightFlushSpec,
+                fourOfAKindSpec,
+                fullHouseSpec,
+                flushSpec,
+                straightSpec,
+                threeOfAKindSpec,
+                threeOfAKindSpec,
+                twoPairsSpec,
+                onePairSpec,
+                highCardSpec)
+        .filter(pokerHandSpec -> pokerHandSpec.isSatisfiedBy(cardSet))
+        .findFirst()
+        .map(pokerHandSpec -> new Hand(pokerHandSpec.getRanking(), cardSet.getSortedCards()))
+        .orElseThrow(() -> new IllegalStateException("Poker Hand not recognized."));
     }
 
     private List<Card> handCards(CardSet cardSet) {
