@@ -64,10 +64,6 @@ public class HandResolver {
         throw new IllegalStateException("Poker Hand not recognized.");
     }
 
-    private boolean isHighCard(CardSet cardSet) {
-        return highCardSpec.isHighCard(cardSet);
-    }
-
     private boolean isOnePair(CardSet cardSet) {
         return !cardSet.isAllSameSuit() &&
                 cardSet.hasRankDiversity(4);
