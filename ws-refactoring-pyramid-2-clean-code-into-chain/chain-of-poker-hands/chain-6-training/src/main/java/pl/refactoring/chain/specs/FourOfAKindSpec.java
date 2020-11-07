@@ -9,13 +9,13 @@ public class FourOfAKindSpec {
     public FourOfAKindSpec() {
     }
 
-    boolean IsFourOfAKind(CardSet cardSet) {
+    public boolean IsFourOfAKind(CardSet cardSet) {
         return !cardSet.isAllSameSuit() &&
                 cardSet.hasRankDiversity(2) &&
                 cardSet.containsRankWithMultiplicity(4);
     }
 
-    RANKING getFourOfAKindRanking() {
+    public RANKING getFourOfAKindRanking() {
         return FOUR_OF_A_KIND;
     }
 }

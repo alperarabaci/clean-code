@@ -9,13 +9,13 @@ public class TwoPairsSpec {
     public TwoPairsSpec() {
     }
 
-    boolean isTwoPairs(CardSet cardSet) {
+    public boolean isTwoPairs(CardSet cardSet) {
         return !cardSet.isAllSameSuit()
                 && cardSet.hasRankDiversity(3)
                 && cardSet.containsRankWithMultiplicity(1);
     }
 
-    RANKING getTwoPairsRanking() {
+    public RANKING getTwoPairsRanking() {
         return TWO_PAIRS;
     }
 }

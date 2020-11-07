@@ -9,13 +9,13 @@ public class HighCardSpec {
     public HighCardSpec() {
     }
 
-    boolean isHighCard(CardSet cardSet) {
+    public boolean isHighCard(CardSet cardSet) {
         return !cardSet.isAllSameSuit() &&
                 !cardSet.isSequential() &&
                 cardSet.hasRankDiversity(5);
     }
 
-    RANKING getHighCardRanking() {
+    public RANKING getHighCardRanking() {
         return HIGH_CARD;
     }
 }

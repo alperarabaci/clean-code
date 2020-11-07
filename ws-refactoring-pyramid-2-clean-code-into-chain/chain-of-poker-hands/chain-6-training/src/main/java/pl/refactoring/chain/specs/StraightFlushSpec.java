@@ -9,11 +9,11 @@ public class StraightFlushSpec {
     public StraightFlushSpec() {
     }
 
-    boolean isStraightFlush(CardSet cardSet) {
+    public boolean isStraightFlush(CardSet cardSet) {
         return cardSet.isAllSameSuit() && cardSet.isSequential();
     }
 
-    RANKING getStraightRanking() {
+    public RANKING getStraightRanking() {
         return STRAIGHT_FLUSH;
     }
 }
