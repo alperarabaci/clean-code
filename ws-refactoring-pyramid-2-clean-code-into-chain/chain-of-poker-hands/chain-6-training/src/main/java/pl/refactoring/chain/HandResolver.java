@@ -79,12 +79,13 @@ public class HandResolver {
     }
 
     private boolean containsRankWithMultiplicity(CardSet cardSet, int expectedRankMultiplicty) {
-        List<RANK> ranks = cardsByRank(cardSet).keySet()
+        Map<RANK, List<Card>> cardsByRank = cardsByRank(cardSet);
+        List<RANK> ranks = cardsByRank.keySet()
                 .stream()
                 .collect(Collectors.toList());
 
-        return cardsByRank(cardSet).get(ranks.get(0)).size() == expectedRankMultiplicty ||
-                cardsByRank(cardSet).get(ranks.get(1)).size() == expectedRankMultiplicty;
+        return cardsByRank.get(ranks.get(0)).size() == expectedRankMultiplicty ||
+                cardsByRank.get(ranks.get(1)).size() == expectedRankMultiplicty;
     }
 
     private Map<RANK, List<Card>> cardsByRank(CardSet cardSet) {
