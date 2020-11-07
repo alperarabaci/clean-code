@@ -68,6 +68,7 @@ public class HandResolver {
             return new Hand(ONE_PAIR, handCards(cardSet));
         }
         if (!cardSet.isAllSameSuit() &&
+                !cardSet.isSequential() &&
                 cardSet.hasRankDiversity(5)) {
             return new Hand(HIGH_CARD, handCards(cardSet));
         }
