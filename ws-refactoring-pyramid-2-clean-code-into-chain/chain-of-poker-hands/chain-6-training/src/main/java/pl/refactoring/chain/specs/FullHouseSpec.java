@@ -5,7 +5,7 @@ import pl.refactoring.chain.RANKING;
 
 import static pl.refactoring.chain.RANKING.FULL_HOUSE;
 
-public class FullHouseSpec {
+public class FullHouseSpec implements PokerHandSpec {
     public FullHouseSpec() {
     }
 

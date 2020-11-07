@@ -5,7 +5,7 @@ import pl.refactoring.chain.RANKING;
 
 import static pl.refactoring.chain.RANKING.HIGH_CARD;
 
-public class HighCardSpec {
+public class HighCardSpec implements PokerHandSpec {
     public HighCardSpec() {
     }
 

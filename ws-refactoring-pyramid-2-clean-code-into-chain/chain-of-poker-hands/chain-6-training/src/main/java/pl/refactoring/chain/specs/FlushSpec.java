@@ -5,7 +5,7 @@ import pl.refactoring.chain.RANKING;
 
 import static pl.refactoring.chain.RANKING.FLUSH;
 
-public class FlushSpec {
+public class FlushSpec implements PokerHandSpec {
     public FlushSpec() {
     }
 

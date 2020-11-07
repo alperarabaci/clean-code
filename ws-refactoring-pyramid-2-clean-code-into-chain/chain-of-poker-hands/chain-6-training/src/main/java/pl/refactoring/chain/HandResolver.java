@@ -19,15 +19,15 @@ import static java.util.stream.Collectors.groupingBy;
  * If willing to do so, please contact the author.
  */
 public class HandResolver {
-    private final HighCardSpec highCardSpec = new HighCardSpec();
     private final PokerHandSpec straightFlushSpec = new StraightFlushSpec();
-    private final FlushSpec flushSpec = new FlushSpec();
-    private final OnePairSpec onePairSpec = new OnePairSpec();
-    private final TwoPairsSpec twoPairsSpec = new TwoPairsSpec();
-    private final ThreeOfAKindSpec threeOfAKindSpec = new ThreeOfAKindSpec();
-    private final FullHouseSpec fullHouseSpec = new FullHouseSpec();
-    private final FourOfAKindSpec fourOfAKindSpec = new FourOfAKindSpec();
-    private final StraightSpec straightSpec = new StraightSpec();
+    private final PokerHandSpec fourOfAKindSpec = new FourOfAKindSpec();
+    private final PokerHandSpec fullHouseSpec = new FullHouseSpec();
+    private final PokerHandSpec threeOfAKindSpec = new ThreeOfAKindSpec();
+    private final PokerHandSpec flushSpec = new FlushSpec();
+    private final PokerHandSpec straightSpec = new StraightSpec();
+    private final PokerHandSpec twoPairsSpec = new TwoPairsSpec();
+    private final PokerHandSpec onePairSpec = new OnePairSpec();
+    private final PokerHandSpec highCardSpec = new HighCardSpec();
 
     public Hand hand(CardSet cardSet) {
         if (straightFlushSpec.isSatisfiedBy(cardSet)) {

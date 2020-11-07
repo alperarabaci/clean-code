@@ -5,7 +5,7 @@ import pl.refactoring.chain.RANKING;
 
 import static pl.refactoring.chain.RANKING.ONE_PAIR;
 
-public class OnePairSpec {
+public class OnePairSpec implements PokerHandSpec {
     public OnePairSpec() {
     }
 

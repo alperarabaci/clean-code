@@ -5,7 +5,7 @@ import pl.refactoring.chain.RANKING;
 
 import static pl.refactoring.chain.RANKING.STRAIGHT;
 
-public class StraightSpec {
+public class StraightSpec implements PokerHandSpec {
     public StraightSpec() {
     }
 

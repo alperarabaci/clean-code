@@ -5,7 +5,7 @@ import pl.refactoring.chain.RANKING;
 
 import static pl.refactoring.chain.RANKING.FOUR_OF_A_KIND;
 
-public class FourOfAKindSpec {
+public class FourOfAKindSpec implements PokerHandSpec {
     public FourOfAKindSpec() {
     }
 
