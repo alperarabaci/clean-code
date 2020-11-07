@@ -3,7 +3,6 @@ package pl.refactoring.chain;
 import pl.refactoring.chain.card.Card;
 import pl.refactoring.chain.card.RANK;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -80,12 +79,12 @@ public class HandResolver {
     }
 
     private boolean containsRankWithMultiplicity(CardSet cardSet, int expectedRankMultiplicty) {
-        Map<RANK, List<Card>> cardsByRank = cardsByRank(cardSet);
+        Map<RANK, List<Card>> cardsByRank = cardSet.getSortedCards().stream()
+                .collect(groupingBy(Card::getRank));
         /*
             return cardsByRank(cardSet).get(ranks.get(0)).size() == expectedRankMultiplicty ||
             cardsByRank(cardSet).get(ranks.get(1)).size() == expectedRankMultiplicty;
          */
-
         return cardsByRank.values().stream()
                 .map(cards -> cards.size())
                 .anyMatch(cardWithSingleRank -> cardWithSingleRank == expectedRankMultiplicty);
