@@ -37,6 +37,19 @@ public class HandResolver {
                 && cardSet.isSequential()) {
             return new Hand(STRAIGHT, handCards(cardSet));
         }
+
+
+        if (!cardSet.isAllSameSuit() &&
+                cardSet.hasRankDiversity(2) &&
+                cardSet.containsRankWithMultiplicity(4)) {
+            return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
+        }
+
+        if (!cardSet.isAllSameSuit() &&
+                cardSet.hasRankDiversity(2) &&
+                cardSet.containsRankWithMultiplicity(3)) {
+            return new Hand(FULL_HOUSE, handCards(cardSet));
+        }
         // else
         // TODO Below logic assumed that cards belong to different suites
         // Check for possible x of a kind
@@ -45,17 +58,6 @@ public class HandResolver {
                 .stream()
                 .collect(Collectors.toList());
 
-        if (cardSet.hasRankDiversity(2)) {
-            if (cardSet.containsRankWithMultiplicity(4)) {
-                return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
-            }
-        }
-
-        if (cardSet.hasRankDiversity(2)) {
-            if(cardSet.containsRankWithMultiplicity(3)) {
-                return new Hand(FULL_HOUSE, handCards(cardSet));
-            }
-        }
 
         if (cardSet.hasRankDiversity(3)) {
             // Look for 3 of a kind
