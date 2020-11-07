@@ -5,7 +5,6 @@ import pl.refactoring.chain.card.RANK;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 import static pl.refactoring.chain.RANKING.*;
@@ -22,6 +21,8 @@ import static pl.refactoring.chain.RANKING.*;
  * If willing to do so, please contact the author.
  */
 public class HandResolver {
+    private final HighCardSpec highCardSpec = new HighCardSpec();
+
     public Hand hand(CardSet cardSet) {
 
         if (isStraightFlush(cardSet)) {
@@ -56,7 +57,7 @@ public class HandResolver {
         if (isOnePair(cardSet)) {
             return new Hand(ONE_PAIR, handCards(cardSet));
         }
-        if (isHighCard(cardSet)) {
+        if (highCardSpec.isHighCard(cardSet)) {
             return new Hand(HIGH_CARD, handCards(cardSet));
         }
 
@@ -64,9 +65,7 @@ public class HandResolver {
     }
 
     private boolean isHighCard(CardSet cardSet) {
-        return !cardSet.isAllSameSuit() &&
-                !cardSet.isSequential() &&
-                cardSet.hasRankDiversity(5);
+        return highCardSpec.isHighCard(cardSet);
     }
 
     private boolean isOnePair(CardSet cardSet) {
