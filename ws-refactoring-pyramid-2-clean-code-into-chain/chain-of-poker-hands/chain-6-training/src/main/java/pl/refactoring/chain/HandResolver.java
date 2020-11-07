@@ -1,6 +1,7 @@
 package pl.refactoring.chain;
 
 import pl.refactoring.chain.card.Card;
+import pl.refactoring.chain.specs.*;
 
 import java.util.List;
 

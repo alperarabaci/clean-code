@@ -45,13 +45,13 @@ public class CardSet {
         return sortedCards;
     }
 
-    boolean isAllSameSuit() {
+    public boolean isAllSameSuit() {
         SUIT suitCandidate = sortedCards.get(0).getSuit();
         return sortedCards.stream()
                 .allMatch(card -> card.getSuit().equals(suitCandidate));
     }
 
-    boolean isSequential() {
+    public boolean isSequential() {
         // Check for straight
         int firstOrdinal = sortedCards.get(0).getRank().ordinal();
         int secondOrdinal = sortedCards.get(1).getRank().ordinal();
@@ -65,12 +65,12 @@ public class CardSet {
                 && fourthOrdinal + 1 == fifthOrdinal;
     }
 
-    boolean hasRankDiversity(int rankDiversity) {
+    public boolean hasRankDiversity(int rankDiversity) {
         return sortedCards.stream()
                 .collect(groupingBy(Card::getRank)).size() == rankDiversity;
     }
 
-    boolean containsRankWithMultiplicity(int expectedRankMultiplicty) {
+    public boolean containsRankWithMultiplicity(int expectedRankMultiplicty) {
         Map<RANK, List<Card>> cardsByRank = getSortedCards().stream()
                 .collect(groupingBy(Card::getRank));
         /*
