@@ -30,42 +30,41 @@ public class HandResolver {
     private final StraightSpec straightSpec = new StraightSpec();
 
     public Hand hand(CardSet cardSet) {
-
-        if (straightFlushSpec.isStraightFlush(cardSet)) {
+        if (straightFlushSpec.isSatisfiedBy(cardSet)) {
             return new Hand(straightFlushSpec.getStraightRanking(), handCards(cardSet));
         }
 
-        if (flushSpec.isFlush(cardSet)) {
+        if (flushSpec.isSatisfiedBy(cardSet)) {
             return new Hand(flushSpec.getFlushRanking(), handCards(cardSet));
         }
 
-        if (straightSpec.isStraight(cardSet)) {
+        if (straightSpec.isSatisfiedBy(cardSet)) {
             return new Hand(straightSpec.getStraightRanking(), handCards(cardSet));
         }
 
-        if (fourOfAKindSpec.IsFourOfAKind(cardSet)) {
+        if (fourOfAKindSpec.isSatisfiedBy(cardSet)) {
             return new Hand(fourOfAKindSpec.getFourOfAKindRanking(), handCards(cardSet));
         }
 
-        if (fullHouseSpec.isFullHouse(cardSet)) {
+        if (fullHouseSpec.isSatisfiedBy(cardSet)) {
             return new Hand(fullHouseSpec.getFullHouseRanking(), handCards(cardSet));
         }
 
-        if (threeOfAKindSpec.isThreeOfAKind(cardSet)) {
+        if (threeOfAKindSpec.isSatisfiedBy(cardSet)) {
             return new Hand(threeOfAKindSpec.getThreeOfAKindRanking(), handCards(cardSet));
         }
 
-        if (twoPairsSpec.isTwoPairs(cardSet)) {
+        if (twoPairsSpec.isSatisfiedBy(cardSet)) {
             return new Hand(twoPairsSpec.getTwoPairsRanking(), handCards(cardSet));
         }
 
-        if (onePairSpec.isOnePair(cardSet)) {
+        if (onePairSpec.isSatisfiedBy(cardSet)) {
             return new Hand(onePairSpec.getOnePairRanking(), handCards(cardSet));
         }
-        if (highCardSpec.isHighCard(cardSet)) {
+
+        if (highCardSpec.isSatisfiedBy(cardSet)) {
             return new Hand(highCardSpec.getHighCardRanking(), handCards(cardSet));
         }
-
         throw new IllegalStateException("Poker Hand not recognized.");
     }
 

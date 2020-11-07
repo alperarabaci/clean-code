@@ -9,7 +9,7 @@ public class FourOfAKindSpec {
     public FourOfAKindSpec() {
     }
 
-    public boolean IsFourOfAKind(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return !cardSet.isAllSameSuit() &&
                 cardSet.hasRankDiversity(2) &&
                 cardSet.containsRankWithMultiplicity(4);

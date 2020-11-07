@@ -9,7 +9,7 @@ public class StraightSpec {
     public StraightSpec() {
     }
 
-    public boolean isStraight(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return !cardSet.isAllSameSuit()
                 && cardSet.hasRankDiversity(5)
                 && cardSet.isSequential();

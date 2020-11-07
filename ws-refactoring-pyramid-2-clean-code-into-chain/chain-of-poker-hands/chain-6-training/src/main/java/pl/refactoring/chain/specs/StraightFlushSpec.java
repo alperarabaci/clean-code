@@ -9,7 +9,7 @@ public class StraightFlushSpec {
     public StraightFlushSpec() {
     }
 
-    public boolean isStraightFlush(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return cardSet.isAllSameSuit() && cardSet.isSequential();
     }
 

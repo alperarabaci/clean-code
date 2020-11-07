@@ -9,7 +9,7 @@ public class TwoPairsSpec {
     public TwoPairsSpec() {
     }
 
-    public boolean isTwoPairs(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return !cardSet.isAllSameSuit()
                 && cardSet.hasRankDiversity(3)
                 && cardSet.containsRankWithMultiplicity(1);

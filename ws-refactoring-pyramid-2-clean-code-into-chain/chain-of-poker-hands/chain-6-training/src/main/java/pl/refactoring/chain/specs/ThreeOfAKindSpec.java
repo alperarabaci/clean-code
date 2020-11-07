@@ -9,7 +9,7 @@ public class ThreeOfAKindSpec {
     public ThreeOfAKindSpec() {
     }
 
-    public boolean isThreeOfAKind(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return !cardSet.isAllSameSuit()
                 && cardSet.hasRankDiversity(3)
                 && cardSet.containsRankWithMultiplicity(3);

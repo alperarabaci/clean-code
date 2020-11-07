@@ -9,7 +9,7 @@ public class FullHouseSpec {
     public FullHouseSpec() {
     }
 
-    public boolean isFullHouse(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return !cardSet.isAllSameSuit() &&
                 cardSet.hasRankDiversity(2) &&
                 cardSet.containsRankWithMultiplicity(3);

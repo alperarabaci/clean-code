@@ -9,7 +9,7 @@ public class OnePairSpec {
     public OnePairSpec() {
     }
 
-    public boolean isOnePair(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return !cardSet.isAllSameSuit() &&
                 cardSet.hasRankDiversity(4);
     }

@@ -9,7 +9,7 @@ public class HighCardSpec {
     public HighCardSpec() {
     }
 
-    public boolean isHighCard(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return !cardSet.isAllSameSuit() &&
                 !cardSet.isSequential() &&
                 cardSet.hasRankDiversity(5);

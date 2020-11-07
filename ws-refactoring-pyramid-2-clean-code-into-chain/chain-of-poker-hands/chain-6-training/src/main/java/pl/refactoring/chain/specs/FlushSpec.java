@@ -9,7 +9,7 @@ public class FlushSpec {
     public FlushSpec() {
     }
 
-    public boolean isFlush(CardSet cardSet) {
+    public boolean isSatisfiedBy(CardSet cardSet) {
         return cardSet.isAllSameSuit() && !cardSet.isSequential();
     }
 
