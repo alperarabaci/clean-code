@@ -1,13 +1,10 @@
 package pl.refactoring.chain;
 
 import pl.refactoring.chain.card.Card;
-import pl.refactoring.chain.card.RANK;
 
 import java.util.List;
-import java.util.Map;
 
 import static java.util.stream.Collectors.groupingBy;
-import static pl.refactoring.chain.RANKING.*;
 
 /**
  * Copyright (c) 2020 IT Train Wlodzimierz Krakowski (www.refactoring.pl)
@@ -34,39 +31,38 @@ public class HandResolver {
     public Hand hand(CardSet cardSet) {
 
         if (straightFlushSpec.isStraightFlush(cardSet)) {
-            return new Hand(STRAIGHT_FLUSH, handCards(cardSet));
+            return new Hand(straightFlushSpec.getStraightRanking(), handCards(cardSet));
         }
 
         if (flushSpec.isFlush(cardSet)) {
-            return new Hand(FLUSH, handCards(cardSet));
+            return new Hand(flushSpec.getFlushRanking(), handCards(cardSet));
         }
 
         if (straightSpec.isStraight(cardSet)) {
-            return new Hand(STRAIGHT, handCards(cardSet));
+            return new Hand(straightSpec.getStraightRanking(), handCards(cardSet));
         }
 
-
         if (fourOfAKindSpec.IsFourOfAKind(cardSet)) {
-            return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
+            return new Hand(fourOfAKindSpec.getFourOfAKindRanking(), handCards(cardSet));
         }
 
         if (fullHouseSpec.isFullHouse(cardSet)) {
-            return new Hand(FULL_HOUSE, handCards(cardSet));
+            return new Hand(fullHouseSpec.getFullHouseRanking(), handCards(cardSet));
         }
 
         if (threeOfAKindSpec.isThreeOfAKind(cardSet)) {
-            return new Hand(THREE_OF_A_KIND, handCards(cardSet));
+            return new Hand(threeOfAKindSpec.getThreeOfAKindRanking(), handCards(cardSet));
         }
 
         if (twoPairsSpec.isTwoPairs(cardSet)) {
-            return new Hand(TWO_PAIRS, handCards(cardSet));
+            return new Hand(twoPairsSpec.getTwoPairsRanking(), handCards(cardSet));
         }
 
         if (onePairSpec.isOnePair(cardSet)) {
-            return new Hand(ONE_PAIR, handCards(cardSet));
+            return new Hand(onePairSpec.getOnePairRanking(), handCards(cardSet));
         }
         if (highCardSpec.isHighCard(cardSet)) {
-            return new Hand(HIGH_CARD, handCards(cardSet));
+            return new Hand(highCardSpec.getHighCardRanking(), handCards(cardSet));
         }
 
         throw new IllegalStateException("Poker Hand not recognized.");

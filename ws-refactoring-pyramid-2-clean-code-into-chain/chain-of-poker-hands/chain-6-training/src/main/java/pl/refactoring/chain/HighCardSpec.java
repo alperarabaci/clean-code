@@ -1,5 +1,7 @@
 package pl.refactoring.chain;
 
+import static pl.refactoring.chain.RANKING.HIGH_CARD;
+
 public class HighCardSpec {
     public HighCardSpec() {
     }
@@ -8,5 +10,9 @@ public class HighCardSpec {
         return !cardSet.isAllSameSuit() &&
                 !cardSet.isSequential() &&
                 cardSet.hasRankDiversity(5);
+    }
+
+    RANKING getHighCardRanking() {
+        return HIGH_CARD;
     }
 }
