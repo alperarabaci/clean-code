@@ -1,9 +1,11 @@
 package pl.refactoring.chain;
 
 import pl.refactoring.chain.card.Card;
+import pl.refactoring.chain.card.RANK;
 import pl.refactoring.chain.card.SUIT;
 
 import java.util.List;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -66,5 +68,17 @@ public class CardSet {
     boolean hasRankDiversity(int rankDiversity) {
         return sortedCards.stream()
                 .collect(groupingBy(Card::getRank)).size() == rankDiversity;
+    }
+
+    boolean containsRankWithMultiplicity(int expectedRankMultiplicty) {
+        Map<RANK, List<Card>> cardsByRank = getSortedCards().stream()
+                .collect(groupingBy(Card::getRank));
+        /*
+            return cardsByRank(cardSet).get(ranks.get(0)).size() == expectedRankMultiplicty ||
+            cardsByRank(cardSet).get(ranks.get(1)).size() == expectedRankMultiplicty;
+         */
+        return cardsByRank.values().stream()
+                .map(cards -> cards.size())
+                .anyMatch(cardWithSingleRank -> cardWithSingleRank == expectedRankMultiplicty);
     }
 }
