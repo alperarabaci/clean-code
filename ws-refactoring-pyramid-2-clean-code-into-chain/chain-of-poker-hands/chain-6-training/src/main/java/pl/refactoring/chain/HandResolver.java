@@ -5,7 +5,6 @@ import pl.refactoring.chain.card.RANK;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 import static pl.refactoring.chain.RANKING.*;
@@ -24,101 +23,48 @@ import static pl.refactoring.chain.RANKING.*;
 public class HandResolver {
     public Hand hand(CardSet cardSet) {
 
-        if (isStraightFlush(cardSet)) {
-            return new Hand(STRAIGHT_FLUSH, handCards(cardSet));
+        if (cardSet.isStraightFlush()) {
+            return new Hand(STRAIGHT_FLUSH, cardSet.handCards());
         }
 
-        if (isFlush(cardSet)) {
-            return new Hand(FLUSH, handCards(cardSet));
+        if (cardSet.isFlush()) {
+            return new Hand(FLUSH, cardSet.handCards());
         }
 
-        if (isStraight(cardSet)) {
-            return new Hand(STRAIGHT, handCards(cardSet));
+        if (cardSet.isStraight()) {
+            return new Hand(STRAIGHT, cardSet.handCards());
         }
 
-        if (isFourOfAKind(cardSet)) {
-            return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
+        if (cardSet.isFourOfAKind()) {
+            return new Hand(FOUR_OF_A_KIND, cardSet.handCards());
         }
 
-        if (isFullHouse(cardSet)) {
-            return new Hand(FULL_HOUSE, handCards(cardSet));
+        if (cardSet.isFullHouse()) {
+            return new Hand(FULL_HOUSE, cardSet.handCards());
         }
 
-        if (isThreeOfAKind(cardSet)) {
-            return new Hand(THREE_OF_A_KIND, handCards(cardSet));
+        if (cardSet.isThreeOfAKind()) {
+            return new Hand(THREE_OF_A_KIND, cardSet.handCards());
         }
 
-        if (isTwoPairs(cardSet)) {
-            return new Hand(TWO_PAIRS, handCards(cardSet));
+        if (cardSet.isTwoPairs()) {
+            return new Hand(TWO_PAIRS, cardSet.handCards());
         }
 
-        if (isOnePair(cardSet)) {
-            return new Hand(ONE_PAIR, handCards(cardSet));
+        if (cardSet.isOnePair()) {
+            return new Hand(ONE_PAIR, cardSet.handCards());
         }
 
-        if (isHighCard(cardSet)) {
-            return new Hand(HIGH_CARD, handCards(cardSet));
+        if (cardSet.isHighCard()) {
+            return new Hand(HIGH_CARD, cardSet.handCards());
         }
 
         throw new IllegalStateException("Poker Hand not recognized.");
     }
 
-    private boolean isHighCard(CardSet cardSet) {
-        return !cardSet.isAllSameSuit() &&
-                !cardSet.isSequential() &&
-                cardSet.hasRankDiversity(5);
-    }
-
-    private boolean isOnePair(CardSet cardSet) {
-        return !cardSet.isAllSameSuit() &&
-                cardSet.hasRankDiversity(4);
-    }
-
-    private boolean isTwoPairs(CardSet cardSet) {
-        return !cardSet.isAllSameSuit()
-                && cardSet.hasRankDiversity(3)
-                && cardSet.containsRankWithMultiplicity(1);
-    }
-
-    private boolean isThreeOfAKind(CardSet cardSet) {
-        return !cardSet.isAllSameSuit()
-                && cardSet.hasRankDiversity(3)
-                && cardSet.containsRankWithMultiplicity(3);
-    }
-
-    private boolean isFullHouse(CardSet cardSet) {
-        return !cardSet.isAllSameSuit() &&
-                cardSet.hasRankDiversity(2) &&
-                cardSet.containsRankWithMultiplicity(3);
-    }
-
-    private boolean isFourOfAKind(CardSet cardSet) {
-        return !cardSet.isAllSameSuit() &&
-                cardSet.hasRankDiversity(2) &&
-                cardSet.containsRankWithMultiplicity(4);
-    }
-
-    private boolean isStraight(CardSet cardSet) {
-        return !cardSet.isAllSameSuit()
-                && cardSet.hasRankDiversity(5)
-                && cardSet.isSequential();
-    }
-
-    private boolean isFlush(CardSet cardSet) {
-        return cardSet.isAllSameSuit() && !cardSet.isSequential();
-    }
-
-    private boolean isStraightFlush(CardSet cardSet) {
-        return cardSet.isAllSameSuit() && cardSet.isSequential();
-    }
-
     private Map<RANK, List<Card>> cardsByRank(CardSet cardSet) {
-        return handCards(cardSet).stream()
+        return cardSet.handCards().stream()
                 .collect(groupingBy(Card::getRank));
-    }
-
-    private List<Card> handCards(CardSet cardSet) {
-        return cardSet.getSortedCards();
     }
 
 }

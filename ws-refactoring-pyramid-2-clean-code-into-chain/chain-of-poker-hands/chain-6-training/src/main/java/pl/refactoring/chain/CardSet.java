@@ -81,4 +81,57 @@ public class CardSet {
                 .map(cards -> cards.size())
                 .anyMatch(cardWithSingleRank -> cardWithSingleRank == expectedRankMultiplicty);
     }
+
+    boolean isHighCard() {
+        return !isAllSameSuit() &&
+                !isSequential() &&
+                hasRankDiversity(5);
+    }
+
+    boolean isOnePair() {
+        return !isAllSameSuit() &&
+                hasRankDiversity(4);
+    }
+
+    boolean isTwoPairs() {
+        return !isAllSameSuit()
+                && hasRankDiversity(3)
+                && containsRankWithMultiplicity(1);
+    }
+
+    boolean isThreeOfAKind() {
+        return !isAllSameSuit()
+                && hasRankDiversity(3)
+                && containsRankWithMultiplicity(3);
+    }
+
+    boolean isFullHouse() {
+        return !isAllSameSuit() &&
+                hasRankDiversity(2) &&
+                containsRankWithMultiplicity(3);
+    }
+
+    boolean isFourOfAKind() {
+        return !isAllSameSuit() &&
+                hasRankDiversity(2) &&
+                containsRankWithMultiplicity(4);
+    }
+
+    boolean isStraight() {
+        return !isAllSameSuit()
+                && hasRankDiversity(5)
+                && isSequential();
+    }
+
+    boolean isFlush() {
+        return isAllSameSuit() && !isSequential();
+    }
+
+    boolean isStraightFlush() {
+        return isAllSameSuit() && isSequential();
+    }
+
+    List<Card> handCards() {
+        return getSortedCards();
+    }
 }
