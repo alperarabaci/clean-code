@@ -45,13 +45,13 @@ public class HandResolver {
                 .stream()
                 .collect(Collectors.toList());
 
-
         if (cardSet.hasRankDiversity(2)) {
-            // Look for four of a kind
             if (cardSet.containsRankWithMultiplicity(4)) {
                 return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
             }
-                // Look for full house
+        }
+
+        if (cardSet.hasRankDiversity(2)) {
             if(cardSet.containsRankWithMultiplicity(3)) {
                 return new Hand(FULL_HOUSE, handCards(cardSet));
             }
