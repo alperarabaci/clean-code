@@ -48,8 +48,8 @@ public class HandResolver {
 
         if (cardSet.hasRankDiversity(2)) {
             // Look for four of a kind
-            if (cardsByRank(cardSet).get(ranks.get(0)).size() == 4 ||
-                    cardsByRank(cardSet).get(ranks.get(1)).size() == 4)
+            int expectedRankMultiplicty = 4;
+            if (containsRankWithMultiplicity(cardSet, ranks, expectedRankMultiplicty))
                 return new Hand(FOUR_OF_A_KIND, handCards(cardSet));
                 // Look for full house
             else {
@@ -76,6 +76,11 @@ public class HandResolver {
         }
 
         return new Hand(HIGH_CARD, handCards(cardSet));
+    }
+
+    private boolean containsRankWithMultiplicity(CardSet cardSet, List<RANK> ranks, int expectedRankMultiplicty) {
+        return cardsByRank(cardSet).get(ranks.get(0)).size() == expectedRankMultiplicty ||
+                cardsByRank(cardSet).get(ranks.get(1)).size() == expectedRankMultiplicty;
     }
 
     private Map<RANK, List<Card>> cardsByRank(CardSet cardSet) {
