@@ -50,6 +50,23 @@ public class HandResolver {
                 cardSet.containsRankWithMultiplicity(3)) {
             return new Hand(FULL_HOUSE, handCards(cardSet));
         }
+
+        if (!cardSet.isAllSameSuit()
+                && cardSet.hasRankDiversity(3)
+                && cardSet.containsRankWithMultiplicity(3)) {
+            return new Hand(THREE_OF_A_KIND, handCards(cardSet));
+        }
+
+        if (!cardSet.isAllSameSuit()
+                && cardSet.hasRankDiversity(3)
+                && cardSet.containsRankWithMultiplicity(1)) {
+            return new Hand(TWO_PAIRS, handCards(cardSet));
+        }
+
+        if (!cardSet.isAllSameSuit() &&
+                cardSet.hasRankDiversity(4)) {
+            return new Hand(ONE_PAIR, handCards(cardSet));
+        }
         // else
         // TODO Below logic assumed that cards belong to different suites
         // Check for possible x of a kind
@@ -59,21 +76,7 @@ public class HandResolver {
                 .collect(Collectors.toList());
 
 
-        if (cardSet.hasRankDiversity(3)) {
-            if (cardSet.containsRankWithMultiplicity(3)) {
-                return new Hand(THREE_OF_A_KIND, handCards(cardSet));
-            }
-        }
 
-        if (cardSet.hasRankDiversity(3)) {
-            if (cardSet.containsRankWithMultiplicity(1)) {
-                return new Hand(TWO_PAIRS, handCards(cardSet));
-            }
-        }
-
-        if (cardSet.hasRankDiversity(4)) {
-            return new Hand(ONE_PAIR, handCards(cardSet));
-        }
 
         return new Hand(HIGH_CARD, handCards(cardSet));
     }
