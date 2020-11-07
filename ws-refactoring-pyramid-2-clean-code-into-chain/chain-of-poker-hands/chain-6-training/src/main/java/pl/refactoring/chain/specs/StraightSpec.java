@@ -15,7 +15,7 @@ public class StraightSpec {
                 && cardSet.isSequential();
     }
 
-    public RANKING getStraightRanking() {
+    public RANKING getRanking() {
         return STRAIGHT;
     }
 }

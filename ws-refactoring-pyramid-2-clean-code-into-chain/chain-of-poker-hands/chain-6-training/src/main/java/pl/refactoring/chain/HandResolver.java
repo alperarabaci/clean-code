@@ -31,39 +31,39 @@ public class HandResolver {
 
     public Hand hand(CardSet cardSet) {
         if (straightFlushSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(straightFlushSpec.getStraightRanking(), handCards(cardSet));
+            return new Hand(straightFlushSpec.getRanking(), handCards(cardSet));
         }
 
         if (flushSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(flushSpec.getFlushRanking(), handCards(cardSet));
+            return new Hand(flushSpec.getRanking(), handCards(cardSet));
         }
 
         if (straightSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(straightSpec.getStraightRanking(), handCards(cardSet));
+            return new Hand(straightSpec.getRanking(), handCards(cardSet));
         }
 
         if (fourOfAKindSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(fourOfAKindSpec.getFourOfAKindRanking(), handCards(cardSet));
+            return new Hand(fourOfAKindSpec.getRanking(), handCards(cardSet));
         }
 
         if (fullHouseSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(fullHouseSpec.getFullHouseRanking(), handCards(cardSet));
+            return new Hand(fullHouseSpec.getRanking(), handCards(cardSet));
         }
 
         if (threeOfAKindSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(threeOfAKindSpec.getThreeOfAKindRanking(), handCards(cardSet));
+            return new Hand(threeOfAKindSpec.getRanking(), handCards(cardSet));
         }
 
         if (twoPairsSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(twoPairsSpec.getTwoPairsRanking(), handCards(cardSet));
+            return new Hand(twoPairsSpec.getRanking(), handCards(cardSet));
         }
 
         if (onePairSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(onePairSpec.getOnePairRanking(), handCards(cardSet));
+            return new Hand(onePairSpec.getRanking(), handCards(cardSet));
         }
 
         if (highCardSpec.isSatisfiedBy(cardSet)) {
-            return new Hand(highCardSpec.getHighCardRanking(), handCards(cardSet));
+            return new Hand(highCardSpec.getRanking(), handCards(cardSet));
         }
         throw new IllegalStateException("Poker Hand not recognized.");
     }

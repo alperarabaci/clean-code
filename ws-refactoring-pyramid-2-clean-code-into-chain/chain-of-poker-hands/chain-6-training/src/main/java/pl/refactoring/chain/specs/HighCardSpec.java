@@ -15,7 +15,7 @@ public class HighCardSpec {
                 cardSet.hasRankDiversity(5);
     }
 
-    public RANKING getHighCardRanking() {
+    public RANKING getRanking() {
         return HIGH_CARD;
     }
 }

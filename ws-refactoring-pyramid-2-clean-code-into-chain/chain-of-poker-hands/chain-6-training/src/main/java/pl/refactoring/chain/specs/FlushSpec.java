@@ -13,7 +13,7 @@ public class FlushSpec {
         return cardSet.isAllSameSuit() && !cardSet.isSequential();
     }
 
-    public RANKING getFlushRanking() {
+    public RANKING getRanking() {
         return FLUSH;
     }
 }

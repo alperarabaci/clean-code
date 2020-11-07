@@ -15,7 +15,7 @@ public class FullHouseSpec {
                 cardSet.containsRankWithMultiplicity(3);
     }
 
-    public RANKING getFullHouseRanking() {
+    public RANKING getRanking() {
         return FULL_HOUSE;
     }
 }

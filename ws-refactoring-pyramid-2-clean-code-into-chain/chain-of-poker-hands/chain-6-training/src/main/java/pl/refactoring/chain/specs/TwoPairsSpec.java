@@ -15,7 +15,7 @@ public class TwoPairsSpec {
                 && cardSet.containsRankWithMultiplicity(1);
     }
 
-    public RANKING getTwoPairsRanking() {
+    public RANKING getRanking() {
         return TWO_PAIRS;
     }
 }

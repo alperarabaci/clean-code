@@ -15,7 +15,7 @@ public class ThreeOfAKindSpec {
                 && cardSet.containsRankWithMultiplicity(3);
     }
 
-    public RANKING getThreeOfAKindRanking() {
+    public RANKING getRanking() {
         return THREE_OF_A_KIND;
     }
 }

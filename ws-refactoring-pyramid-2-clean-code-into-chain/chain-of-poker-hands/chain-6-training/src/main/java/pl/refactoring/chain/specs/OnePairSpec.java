@@ -14,7 +14,7 @@ public class OnePairSpec {
                 cardSet.hasRankDiversity(4);
     }
 
-    public RANKING getOnePairRanking() {
+    public RANKING getRanking() {
         return ONE_PAIR;
     }
 }

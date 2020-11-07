@@ -13,7 +13,7 @@ public class StraightFlushSpec {
         return cardSet.isAllSameSuit() && cardSet.isSequential();
     }
 
-    public RANKING getStraightRanking() {
+    public RANKING getRanking() {
         return STRAIGHT_FLUSH;
     }
 }

@@ -15,7 +15,7 @@ public class FourOfAKindSpec {
                 cardSet.containsRankWithMultiplicity(4);
     }
 
-    public RANKING getFourOfAKindRanking() {
+    public RANKING getRanking() {
         return FOUR_OF_A_KIND;
     }
 }
