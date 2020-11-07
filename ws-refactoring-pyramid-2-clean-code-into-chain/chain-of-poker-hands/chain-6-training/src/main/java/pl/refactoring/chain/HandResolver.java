@@ -20,7 +20,7 @@ import static java.util.stream.Collectors.groupingBy;
  */
 public class HandResolver {
     private final HighCardSpec highCardSpec = new HighCardSpec();
-    private final StraightFlushSpec straightFlushSpec = new StraightFlushSpec();
+    private final PokerHandSpec straightFlushSpec = new StraightFlushSpec();
     private final FlushSpec flushSpec = new FlushSpec();
     private final OnePairSpec onePairSpec = new OnePairSpec();
     private final TwoPairsSpec twoPairsSpec = new TwoPairsSpec();
