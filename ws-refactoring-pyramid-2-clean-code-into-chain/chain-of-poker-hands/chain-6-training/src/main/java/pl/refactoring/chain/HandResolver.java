@@ -60,17 +60,15 @@ public class HandResolver {
 
 
         if (cardSet.hasRankDiversity(3)) {
-            // Look for 3 of a kind
-            if (cardsByRank(cardSet).get(ranks.get(0)).size() == 3 ||
-                    cardsByRank(cardSet).get(ranks.get(1)).size() == 3 ||
-                    cardsByRank(cardSet).get(ranks.get(2)).size() == 3)
+            if (cardSet.containsRankWithMultiplicity(3)) {
                 return new Hand(THREE_OF_A_KIND, handCards(cardSet));
+            }
+        }
 
-            // Look for 2 pairs
-            if (cardsByRank(cardSet).get(ranks.get(0)).size() == 1 ||
-                    cardsByRank(cardSet).get(ranks.get(1)).size() == 1 ||
-                    cardsByRank(cardSet).get(ranks.get(2)).size() == 1)
+        if (cardSet.hasRankDiversity(3)) {
+            if (cardSet.containsRankWithMultiplicity(1)) {
                 return new Hand(TWO_PAIRS, handCards(cardSet));
+            }
         }
 
         if (cardSet.hasRankDiversity(4)) {
